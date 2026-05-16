@@ -48,6 +48,9 @@ yarn-error.log*
 # idea files
 .idea
 
+# Generated Prisma client (regenerated via `prisma generate` on build)
+src/generated/prisma/
+
 # Generated SDK (keep .gitkeep)
 src/generated/*
 !src/generated/.gitignore
