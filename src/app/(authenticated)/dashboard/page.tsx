@@ -1,6 +1,6 @@
 import { trpcServer, HydrateClient } from "~/clients/trpc/server";
 import { ErrorBoundary } from "~/components/core/error-boundary";
-import { TrustClawChat } from "./_components/chat/trustclaw-chat";
+import { DinqClawChat } from "./_components/chat/dinqclaw-chat";
 import { OnboardingClient } from "./_components/onboarding/onboarding-client";
 
 export default async function Page() {
@@ -27,7 +27,7 @@ export default async function Page() {
   return (
     <HydrateClient>
       <ErrorBoundary>
-        <TrustClawChat />
+        <DinqClawChat />
       </ErrorBoundary>
     </HydrateClient>
   );

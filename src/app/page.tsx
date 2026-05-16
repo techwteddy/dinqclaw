@@ -3,7 +3,7 @@ import { LandingPage } from "./_components/landing-page";
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
-  name: "TrustClaw",
+  name: "DinqClaw",
   description:
     "Your 24/7 AI assistant with 1000+ integrations via OAuth and sandboxed execution.",
   applicationCategory: "Productivity",
@@ -15,8 +15,7 @@ const jsonLd = {
   },
   creator: {
     "@type": "Organization",
-    name: "Composio",
-    url: "https://composio.dev",
+    name: "Dinq",
   },
 };
 

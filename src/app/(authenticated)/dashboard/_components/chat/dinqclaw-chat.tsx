@@ -2,10 +2,10 @@
 
 import type { UIMessage } from "@ai-sdk/react";
 import { trpc } from "~/clients/trpc";
-import { TrustClawChatSkeleton } from "./trustclaw-chat.skeleton";
+import { DinqClawChatSkeleton } from "./dinqclaw-chat.skeleton";
 import { ChatView } from "./chat-view";
 
-export function TrustClawChat() {
+export function DinqClawChat() {
   const historyQuery = trpc.trustclaw.getHistory.useInfiniteQuery(
     { limit: 10 },
     {
@@ -21,7 +21,7 @@ export function TrustClawChat() {
   );
 
   if (!historyQuery.data || streamingQuery.isLoading) {
-    return <TrustClawChatSkeleton />;
+    return <DinqClawChatSkeleton />;
   }
 
   const pages = historyQuery.data.pages;

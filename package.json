@@ -1,17 +1,17 @@
 {
-  "name": "trustclaw",
+  "name": "dinqclaw",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "A self-hostable personal AI agent with vector memory, Composio tools, and Telegram.",
+  "description": "DinqClaw — a self-hostable personal AI agent with vector memory, Composio tools, and Telegram.",
   "license": "MIT",
   "author": "Composio <sarah@composio.dev>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ComposioHQ/trustclaw.git"
+    "url": "git+https://github.com/ComposioHQ/dinqclaw.git"
   },
-  "homepage": "https://github.com/ComposioHQ/trustclaw#readme",
-  "bugs": "https://github.com/ComposioHQ/trustclaw/issues",
+  "homepage": "https://github.com/ComposioHQ/dinqclaw#readme",
+  "bugs": "https://github.com/ComposioHQ/dinqclaw/issues",
   "keywords": [
     "ai-agent",
     "composio",

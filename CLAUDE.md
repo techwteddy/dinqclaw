@@ -2,7 +2,7 @@
 
 ## Product overview
 
-TrustClaw - a self-hostable personal AI agent with vector memory, Composio tools, and a Telegram bot.
+DinqClaw - a self-hostable personal AI agent with vector memory, Composio tools, and a Telegram bot.
 
 ## Tech Stack
 

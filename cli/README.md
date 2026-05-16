@@ -1,6 +1,6 @@
 # @composio/trustclaw
 
-One-command deploy for [TrustClaw](https://github.com/ComposioHQ/trustclaw) on Vercel.
+One-command deploy for [DinqClaw](https://github.com/ComposioHQ/trustclaw) on Vercel.
 
 ## Usage
 

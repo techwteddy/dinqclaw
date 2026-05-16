@@ -7,7 +7,7 @@ type Indicator = "check" | "warn" | "x";
 
 interface ComparisonRow {
   category: string;
-  trustclaw: string;
+  dinqclaw: string;
   vanilla: string;
   vanillaIndicator: Indicator;
 }
@@ -15,43 +15,43 @@ interface ComparisonRow {
 const ROWS: ComparisonRow[] = [
   {
     category: "Setup",
-    trustclaw: "Seconds",
+    dinqclaw: "Seconds",
     vanilla: "30-60 min (Node, Tailscale, tunnels)",
     vanillaIndicator: "warn",
   },
   {
     category: "Credentials",
-    trustclaw: "Encrypted, managed by Composio",
+    dinqclaw: "Encrypted, managed OAuth",
     vanilla: "Plaintext in local config",
     vanillaIndicator: "warn",
   },
   {
     category: "Code Execution",
-    trustclaw: "Remote sandbox",
+    dinqclaw: "Remote sandbox",
     vanilla: "On your local machine",
     vanillaIndicator: "warn",
   },
   {
     category: "Integrations",
-    trustclaw: "500+ with managed OAuth",
+    dinqclaw: "500+ with managed OAuth",
     vanilla: "Manual API key setup per app",
     vanillaIndicator: "warn",
   },
   {
     category: "Skill Security",
-    trustclaw: "Managed tool surface",
+    dinqclaw: "Managed tool surface",
     vanilla: "Unvetted public registry",
     vanillaIndicator: "x",
   },
   {
     category: "Audit Trails",
-    trustclaw: "Full action log",
+    dinqclaw: "Full action log",
     vanilla: "None",
     vanillaIndicator: "x",
   },
   {
     category: "Revocation",
-    trustclaw: "One click",
+    dinqclaw: "One click",
     vanilla: "Find and delete config files",
     vanillaIndicator: "warn",
   },
@@ -76,7 +76,7 @@ export function ComparisonSection() {
           as="h2"
           className="text-foreground mb-10 text-center text-2xl font-bold tracking-tight md:mb-16 md:text-3xl lg:text-4xl"
         >
-          Why is TrustClaw better?
+          Why is DinqClaw better?
         </AnimateOnView>
 
         <AnimateOnView
@@ -89,7 +89,7 @@ export function ComparisonSection() {
               <tr className="border-border border-b">
                 <th className="py-4 pr-4 text-left" />
                 <th className="text-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
-                  TrustClaw
+                  DinqClaw
                 </th>
                 <th className="text-muted-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
                   Vanilla OpenClaw
@@ -106,7 +106,7 @@ export function ComparisonSection() {
                     <div className="flex flex-col items-center gap-1.5 text-center">
                       <IndicatorIcon type="check" />
                       <span className="text-muted-foreground text-xs md:text-sm">
-                        {row.trustclaw}
+                        {row.dinqclaw}
                       </span>
                     </div>
                   </td>

@@ -1,7 +1,7 @@
 {
   "name": "@composio/trustclaw",
   "version": "0.3.3",
-  "description": "One-command deploy for TrustClaw on Vercel",
+  "description": "One-command deploy for DinqClaw on Vercel",
   "type": "module",
   "bin": {
     "trustclaw": "./dist/bin.js"

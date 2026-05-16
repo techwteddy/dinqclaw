@@ -63,7 +63,7 @@ export function HeroSection() {
         className="pointer-events-none absolute left-1/2 top-1/2 hidden h-auto w-[140%] max-w-none -translate-x-1/2 -translate-y-1/2 -scale-x-100 lg:block"
       />
       <div className="pointer-events-none absolute right-0 top-1/2 hidden h-[600px] w-[600px] -translate-y-1/2 translate-x-1/4 lg:block">
-        <div className="h-full w-full rounded-full bg-[radial-gradient(ellipse_at_center,_oklch(0.488_0.243_264.376_/_0.15),_transparent_70%)]" />
+        <div className="h-full w-full rounded-full bg-[radial-gradient(ellipse_at_center,_oklch(0.542_0.213_277_/_0.15),_transparent_70%)]" />
       </div>
 
       {SCATTERED_LOGOS.map((pos, i) => {
@@ -135,7 +135,7 @@ export function HeroSection() {
             className="max-w-2xl text-base text-muted-foreground md:text-lg lg:text-xl"
             delay={0.2}
           >
-            TrustClaw is a 24/7 AI assistant with 1000+ tools via{" "}
+            DinqClaw is a 24/7 AI assistant with 1000+ tools via{" "}
             <strong>OAuth</strong> and <strong>sandboxed execution</strong>.
             Built on the ideas behind OpenClaw, rebuilt from scratch for
             security.

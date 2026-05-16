@@ -1,5 +1,5 @@
-import { TrustClawChatSkeleton } from "./_components/chat/trustclaw-chat.skeleton";
+import { DinqClawChatSkeleton } from "./_components/chat/dinqclaw-chat.skeleton";
 
 export default function Loading() {
-  return <TrustClawChatSkeleton />;
+  return <DinqClawChatSkeleton />;
 }
