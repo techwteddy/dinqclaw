@@ -1,4 +1,4 @@
-# TrustClaw Cron System
+# DinqClaw Cron System
 
 ## Overview
 

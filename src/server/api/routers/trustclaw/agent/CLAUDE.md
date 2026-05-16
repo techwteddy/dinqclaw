@@ -1,8 +1,8 @@
-# TrustClaw Agent
+# DinqClaw Agent
 
 ## Overview
 
-This is the AI agent runtime for TrustClaw. It orchestrates Anthropic Claude calls with Composio tools (external service integrations) and custom tools (memory, scheduling), while managing the context window through a 3-layer system adapted from [pi-mono](https://github.com/nicholasgasior/pi-mono) and [OpenClaw](https://github.com/nicholasgasior/openclaw).
+This is the AI agent runtime for DinqClaw. It orchestrates Anthropic Claude calls with Composio tools (external service integrations) and custom tools (memory, scheduling), while managing the context window through a 3-layer system adapted from [pi-mono](https://github.com/nicholasgasior/pi-mono) and [OpenClaw](https://github.com/nicholasgasior/openclaw).
 
 Entry point: `prepareAgentRun()` in `setup.ts`, consumed by `app/api/chat/route.ts` (web), `app/api/telegram-webhook/route.ts`, and `app/api/cron/trustclaw/execute/route.ts`.
 

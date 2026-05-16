@@ -18,8 +18,13 @@ const code = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "trustclaw",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
+  title: "DinqClaw",
+  description: "Your 24/7 AI assistant with 1000+ integrations.",
+  icons: [
+    { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
+    { rel: "icon", url: "/favicon.ico" },
+  ],
+  themeColor: "#010812",
 };
 
 export default async function RootLayout({
