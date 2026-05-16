@@ -1,5 +1,5 @@
 generator client {
-  provider        = "prisma-client"
+  provider        = "prisma-client-js"
   output          = "../src/generated/prisma"
   previewFeatures = ["postgresqlExtensions"]
 }
@@ -7,17 +7,22 @@ generator client {
 datasource db {
   provider   = "postgresql"
   extensions = [vector]
+  schemas    = ["public"]
 }
 
 enum MessageRole {
   user
   assistant
+
+  @@schema("public")
 }
 
 enum MessageSource {
   web
   telegram
   cron
+
+  @@schema("public")
 }
 
 enum MessageType {
@@ -25,6 +30,8 @@ enum MessageType {
   compaction_summary
   memory_flush
   hidden
+
+  @@schema("public")
 }
 
 model User {
@@ -45,6 +52,7 @@ model User {
 
   @@unique([email])
   @@map("user")
+  @@schema("public")
 }
 
 model Session {
@@ -61,6 +69,7 @@ model Session {
   @@unique([token])
   @@index([userId])
   @@map("session")
+  @@schema("public")
 }
 
 model Account {
@@ -81,6 +90,7 @@ model Account {
 
   @@index([userId])
   @@map("account")
+  @@schema("public")
 }
 
 model Verification {
@@ -93,6 +103,7 @@ model Verification {
 
   @@index([identifier])
   @@map("verification")
+  @@schema("public")
 }
 
 model ComposioClawInstance {
@@ -130,6 +141,7 @@ model ComposioClawInstance {
 
   @@index([userId])
   @@map("composio_claw_instance")
+  @@schema("public")
 }
 
 model Message {
@@ -150,6 +162,7 @@ model Message {
 
   @@index([instanceId, createdAt])
   @@map("composio_claw_message")
+  @@schema("public")
 }
 
 model Memory {
@@ -163,6 +176,7 @@ model Memory {
 
   @@index([instanceId, createdAt])
   @@map("composio_claw_memory")
+  @@schema("public")
 }
 
 model CronJob {
@@ -183,6 +197,7 @@ model CronJob {
 
   @@index([instanceId, nextRunAt])
   @@map("composio_claw_cron_job")
+  @@schema("public")
 }
 
 model OnboardingState {
@@ -201,4 +216,5 @@ model OnboardingState {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("onboarding_state")
+  @@schema("public")
 }

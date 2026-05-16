@@ -1,5 +1,6 @@
 import { createRequire } from "module";
 import { defineConfig, env } from "prisma/config";
+import { normalizeDatabaseUrl } from "./prisma/pg-connection";
 
 // Try to load .env into process.env via dotenv. Only relevant for direct
 // CLI usage (e.g. `pnpm prisma db push` from a developer's shell). When
@@ -18,6 +19,6 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: env("DATABASE_URL"),
+    url: normalizeDatabaseUrl(env("DATABASE_URL")),
   },
 });

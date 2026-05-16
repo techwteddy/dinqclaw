@@ -112,8 +112,10 @@
   "packageManager": "pnpm@10.28.2",
   "pnpm": {
     "onlyBuiltDependencies": [
-      "prisma",
       "@prisma/client",
+      "@prisma/engines",
+      "msw",
+      "prisma",
       "sharp",
       "unrs-resolver"
     ]
