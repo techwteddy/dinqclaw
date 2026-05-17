@@ -11,8 +11,11 @@ import { Button } from "~/components/ui/button";
 import { allowedAnthropicModelSchema } from "~/server/api/routers/trustclaw/createInstance.schema";
 import {
   STEP_ORDER,
+  DEFAULT_LANGUAGE,
+  parseLanguageKey,
   WRITING_STYLES,
   PERSONALITIES,
+  type LanguageKey,
   WRITING_STYLE_ITEM_MAP,
   PERSONALITY_OUTFIT_MAP,
   type Step,
@@ -21,6 +24,7 @@ import {
 } from "./onboarding.consts";
 import { OnboardingClawLogo } from "./onboarding-claw-logo";
 import { NameStep } from "./name-step";
+import { LanguageStep } from "./language-step";
 import { WritingStyleStep } from "./writing-style-step";
 import { PersonalityStep } from "./personality-step";
 import { EmojiStep } from "./emoji-step";
@@ -40,6 +44,7 @@ type AnimationState =
 
 interface OnboardingWizardState {
   name: string;
+  language: LanguageKey;
   writingStyle: WritingStyleKey | null;
   personality: PersonalityKey | null;
   emoji: string | null;
@@ -51,6 +56,8 @@ function getAnimationState(step: Step): AnimationState {
   switch (step) {
     case "name":
       return "happy";
+    case "language":
+      return "idle";
     case "writing-style":
       return "idle";
     case "personality":
@@ -71,6 +78,7 @@ function getAnimationState(step: Step): AnimationState {
 interface SavedOnboardingState {
   currentStep: string;
   name: string;
+  language: string | null;
   writingStyle: string | null;
   personality: string | null;
   emoji: string | null;
@@ -105,6 +113,8 @@ export function Onboarding({
     );
     return {
       name: savedState?.name ?? "",
+      language:
+        parseLanguageKey(savedState?.language) ?? DEFAULT_LANGUAGE,
       writingStyle:
         WRITING_STYLES.find((s) => s.key === savedState?.writingStyle)?.key ??
         null,
@@ -147,6 +157,7 @@ export function Onboarding({
     await saveState.mutateAsync({
       currentStep: nextStep,
       name: currentWizardState.name,
+      language: currentWizardState.language,
       writingStyle: currentWizardState.writingStyle,
       personality: currentWizardState.personality,
       emoji: currentWizardState.emoji,
@@ -255,7 +266,28 @@ export function Onboarding({
               key="name"
               value={wizardState.name}
               onChange={(name) => setWizardState((prev) => ({ ...prev, name }))}
+              onNext={() => goToStep("language")}
+            />
+          )}
+
+          {step === "language" && (
+            <LanguageStep
+              key="language"
+              value={wizardState.language}
+              onChange={(language) =>
+                setWizardState((prev) => ({ ...prev, language }))
+              }
               onNext={() => goToStep("writing-style")}
+              onBack={goBack}
+              onSkip={() => {
+                const nextState = {
+                  ...wizardState,
+                  language: DEFAULT_LANGUAGE,
+                };
+                setWizardState(nextState);
+                setStep("writing-style");
+                void persistState("writing-style", nextState);
+              }}
             />
           )}
 

@@ -37,8 +37,39 @@ const PERSONALITY_INSTRUCTIONS: Record<string, string> = {
     "Show genuine intellectual curiosity. Ask interesting follow-up questions. Connect ideas across domains.",
 };
 
+const LANGUAGE_LABELS: Record<string, string> = {
+  english: "English",
+  spanish: "Spanish",
+  french: "French",
+  arabic: "Arabic",
+  portuguese: "Portuguese",
+  swahili: "Swahili",
+  amharic: "Amharic",
+  hindi: "Hindi",
+  mandarin: "Mandarin",
+  german: "German",
+  italian: "Italian",
+  japanese: "Japanese",
+  korean: "Korean",
+};
+
+function formatLanguageInstruction(language: string | null): string {
+  const key =
+    language && (language in LANGUAGE_LABELS || language === "other")
+      ? language
+      : "english";
+
+  if (key === "other") {
+    return "Follow the user's language preference when they tell you in chat. Default to English until they specify otherwise.";
+  }
+
+  const label = LANGUAGE_LABELS[key] ?? "English";
+  return `Always respond in ${label} unless the user writes in a different language.`;
+}
+
 interface OnboardingData {
   name: string | null;
+  language: string | null;
   writingStyle: string | null;
   personality: string | null;
   emoji: string | null;
@@ -94,6 +125,10 @@ ${styleInstruction}
 
 ${personalityInstruction}
 
+### Language
+
+${formatLanguageInstruction(data.language)}
+
 ### Core Truths
 
 **Be genuinely helpful, not performatively helpful.** Skip the "Great question!" and "I'd be happy to help!" -- just help. Actions speak louder than filler words.
@@ -142,6 +177,7 @@ export const createInstance = protectedProcedure
       where: { userId },
       select: {
         name: true,
+        language: true,
         writingStyle: true,
         personality: true,
         emoji: true,

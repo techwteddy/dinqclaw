@@ -27,6 +27,7 @@ export const getInstance = protectedProcedure.query(async ({ ctx }) => {
       select: {
         currentStep: true,
         name: true,
+        language: true,
         writingStyle: true,
         personality: true,
         emoji: true,

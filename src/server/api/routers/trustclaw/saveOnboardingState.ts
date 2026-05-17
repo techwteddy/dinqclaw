@@ -13,6 +13,7 @@ export const saveOnboardingState = protectedProcedure
         userId,
         currentStep: input.currentStep,
         name: input.name,
+        language: input.language,
         writingStyle: input.writingStyle,
         personality: input.personality,
         emoji: input.emoji,
@@ -22,6 +23,7 @@ export const saveOnboardingState = protectedProcedure
       update: {
         currentStep: input.currentStep,
         name: input.name,
+        language: input.language,
         writingStyle: input.writingStyle,
         personality: input.personality,
         emoji: input.emoji,

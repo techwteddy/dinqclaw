@@ -1,5 +1,6 @@
 export const STEP_ORDER = [
   "name",
+  "language",
   "writing-style",
   "personality",
   "emoji",
@@ -10,6 +11,36 @@ export const STEP_ORDER = [
 ] as const;
 
 export type Step = (typeof STEP_ORDER)[number];
+
+export const LANGUAGES = [
+  { key: "english", label: "English" },
+  { key: "spanish", label: "Spanish" },
+  { key: "french", label: "French" },
+  { key: "arabic", label: "Arabic" },
+  { key: "portuguese", label: "Portuguese" },
+  { key: "swahili", label: "Swahili" },
+  { key: "amharic", label: "Amharic" },
+  { key: "hindi", label: "Hindi" },
+  { key: "mandarin", label: "Mandarin" },
+  { key: "german", label: "German" },
+  { key: "italian", label: "Italian" },
+  { key: "japanese", label: "Japanese" },
+  { key: "korean", label: "Korean" },
+  { key: "other", label: "Other — I'll tell you in chat" },
+] as const;
+
+export type LanguageKey = (typeof LANGUAGES)[number]["key"];
+
+export const DEFAULT_LANGUAGE: LanguageKey = "english";
+
+export function parseLanguageKey(
+  value: string | null | undefined,
+): LanguageKey | null {
+  if (!value) return null;
+  return LANGUAGES.some((lang) => lang.key === value)
+    ? (value as LanguageKey)
+    : null;
+}
 
 export const WRITING_STYLES = [
   { key: "lowercase", label: "no caps, no stress" },
