@@ -3,6 +3,7 @@ import { allowedAnthropicModelSchema } from "./createInstance.schema";
 
 export const onboardingStepSchema = z.enum([
   "name",
+  "language",
   "writing-style",
   "personality",
   "emoji",
@@ -17,6 +18,7 @@ export type OnboardingStep = z.infer<typeof onboardingStepSchema>;
 export const saveOnboardingStateInput = z.object({
   currentStep: onboardingStepSchema,
   name: z.string().default(""),
+  language: z.string().nullable().default(null),
   writingStyle: z.string().nullable().default(null),
   personality: z.string().nullable().default(null),
   emoji: z.string().nullable().default(null),
