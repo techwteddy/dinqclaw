@@ -19,11 +19,14 @@ const jsonLd = {
   },
 };
 
-export default async function Page() {
+export default function Page() {
   return (
-    <>
-      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+    <div className="dark">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <LandingPage />
-    </>
+    </div>
   );
 }

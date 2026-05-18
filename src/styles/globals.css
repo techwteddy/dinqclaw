@@ -216,6 +216,54 @@
   100% { transform: scale(1) rotate(0deg); }
 }
 
+@keyframes hero-gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.hero-gradient-mesh {
+  background: linear-gradient(
+    135deg,
+    #010812 0%,
+    #1a0f3d 35%,
+    #0a1628 65%,
+    #6c5ce7 100%
+  );
+  background-size: 200% 200%;
+  animation: hero-gradient-shift 8s ease-in-out infinite;
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+}
+
 @keyframes listening {
   0%, 100% { transform: translateX(0px) translateY(0px); }
   33% { transform: translateX(-2px) translateY(-2px); }

@@ -71,6 +71,10 @@ const config = {
         protocol: "https",
         hostname: "logos.composio.dev",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 
