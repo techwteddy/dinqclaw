@@ -155,6 +155,8 @@ For Telegram, point your bot's webhook at `<NEXT_PUBLIC_APP_URL>/api/telegram-we
 | `COMPOSIO_API_KEY` | Composio tool integrations |
 | `CRON_SECRET` | Auth for `/api/cron/*` routes (auto-injected on Vercel) |
 | `REDIS_URL` _(optional)_ | Resumable streams + abort flags |
+| `UPSTASH_REDIS_REST_URL` _(optional)_ | Upstash REST URL for API rate limits |
+| `UPSTASH_REDIS_REST_TOKEN` _(optional)_ | Upstash REST token for API rate limits |
 | `TELEGRAM_BOT_TOKEN` _(optional)_ | Telegram bot |
 | `TELEGRAM_BOT_USERNAME` _(optional)_ | Telegram bot |
 | `TELEGRAM_WEBHOOK_SECRET` _(optional)_ | Telegram webhook auth |

@@ -8,6 +8,7 @@ import {
   getStreamingMessage,
 } from "~/server/clients/redis";
 import { getStreamContext } from "./stream-store";
+import { checkChatRateLimit } from "~/server/clients/ratelimit";
 import { TRPCError } from "@trpc/server";
 
 const chatRequestBody = z.object({
@@ -47,7 +48,10 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const { instanceId } = authResult;
+  const { userId, instanceId } = authResult;
+
+  const rateLimited = await checkChatRateLimit(userId);
+  if (rateLimited) return rateLimited;
 
   const body = chatRequestBody.safeParse(await request.json());
   if (!body.success) {
