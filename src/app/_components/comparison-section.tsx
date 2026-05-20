@@ -60,7 +60,7 @@ const ROWS: ComparisonRow[] = [
 function IndicatorIcon({ type }: { type: Indicator }) {
   switch (type) {
     case "check":
-      return <CircleCheck className="h-5 w-5 shrink-0 text-primary" />;
+      return <CircleCheck className="h-5 w-5 shrink-0 text-[#6C5CE7]" />;
     case "warn":
       return <AlertTriangle className="h-5 w-5 shrink-0 text-muted-foreground" />;
     case "x":
@@ -70,7 +70,7 @@ function IndicatorIcon({ type }: { type: Indicator }) {
 
 export function ComparisonSection() {
   return (
-    <section className="px-4 py-16 md:px-6 md:py-24 lg:py-32">
+    <section className="bg-[#010812] px-4 py-16 md:px-6 md:py-24 lg:py-32">
       <div className="mx-auto max-w-4xl">
         <AnimateOnView
           as="h2"
@@ -84,6 +84,7 @@ export function ComparisonSection() {
           delay={0.1}
           margin="-50px"
         >
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl md:p-6">
           <table className="w-full min-w-[500px] border-collapse">
             <thead>
               <tr className="border-border border-b">
@@ -122,6 +123,7 @@ export function ComparisonSection() {
               ))}
             </tbody>
           </table>
+          </div>
         </AnimateOnView>
 
         <AnimateOnView
@@ -131,7 +133,7 @@ export function ComparisonSection() {
           <Link href="/login">
             <Button
               size="lg"
-              className="h-12 w-full px-8 text-base sm:w-auto"
+              className="h-12 w-full bg-[#6C5CE7] px-8 text-base hover:bg-[#5a4bd6] sm:w-auto"
             >
               Get Started
               <ArrowRight className="h-4 w-4" />

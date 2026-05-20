@@ -7,13 +7,15 @@ import { DinqClawBrand } from "./dinqclaw-brand";
 
 export function LandingNav() {
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-background">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-white/10 bg-[#010812]/80 backdrop-blur-xl">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 md:px-6">
         <DinqClawBrand size="md" />
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Link href="/login">
-            <Button size="sm">Get Started</Button>
+            <Button size="sm" className="bg-[#6C5CE7] hover:bg-[#5a4bd6]">
+              Get Started
+            </Button>
           </Link>
         </div>
       </div>
