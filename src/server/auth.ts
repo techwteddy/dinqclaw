@@ -72,7 +72,7 @@ export const auth = betterAuth({
         max: 5,
       },
       "/sign-up/email": {
-        window: 60,
+        window: 60 * 60,
         max: 5,
       },
     },
