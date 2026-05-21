@@ -155,6 +155,8 @@ For Telegram, point your bot's webhook at `<NEXT_PUBLIC_APP_URL>/api/telegram-we
 | `COMPOSIO_API_KEY` | Composio tool integrations |
 | `CRON_SECRET` | Auth for `/api/cron/*` routes (auto-injected on Vercel) |
 | `REDIS_URL` _(optional)_ | Resumable streams + abort flags |
+| `NEXT_PUBLIC_SUPABASE_URL` _(optional)_ | Dinq V1 Supabase URL for token budget RPCs |
+| `SUPABASE_SERVICE_ROLE_KEY` _(optional)_ | Dinq V1 Supabase service role for token budget RPCs |
 | `TELEGRAM_BOT_TOKEN` _(optional)_ | Telegram bot |
 | `TELEGRAM_BOT_USERNAME` _(optional)_ | Telegram bot |
 | `TELEGRAM_WEBHOOK_SECRET` _(optional)_ | Telegram webhook auth |

@@ -61,6 +61,7 @@ interface PrepareAgentRunParams {
   userMessage: string;
   source: MessageSource;
   userMessageType?: "hidden";
+  onAgentFinish?: (usage: { tokensUsed: number }) => void | Promise<void>;
 }
 
 interface PrepareAgentRunResult {
@@ -73,7 +74,8 @@ type PrepareResult = { status: "ready"; result: PrepareAgentRunResult };
 export async function prepareAgentRun(
   params: PrepareAgentRunParams,
 ): Promise<PrepareResult> {
-  const { instanceId, userMessage, source, userMessageType } = params;
+  const { instanceId, userMessage, source, userMessageType, onAgentFinish } =
+    params;
 
   const instance = await db.composioClawInstance.findUnique({
     where: { id: instanceId },
@@ -252,6 +254,10 @@ export async function prepareAgentRun(
           settings,
           prunedMessages,
         });
+
+        if (onAgentFinish) {
+          void onAgentFinish({ tokensUsed: totalContextTokens });
+        }
       } catch (error) {
         console.error("[agent/onFinish] post-stream processing failed:", error);
       } finally {
