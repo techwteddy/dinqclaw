@@ -24,10 +24,6 @@ export const env = createEnv({
     // Redis (optional - resumable streams disabled when missing; basic streaming still works)
     REDIS_URL: z.string().optional(),
 
-    // Upstash Redis REST (optional - rate limits disabled when missing)
-    UPSTASH_REDIS_REST_URL: z.string().url().optional(),
-    UPSTASH_REDIS_REST_TOKEN: z.string().optional(),
-
     // Cron auth. Required in production so unauthenticated callers can't hit
     // /api/cron/* endpoints. Vercel auto-injects this when crons are configured
     // in vercel.json; the deploy CLI also generates one on first deploy.
@@ -46,8 +42,6 @@ export const env = createEnv({
     TELEGRAM_WEBHOOK_SECRET: process.env.TELEGRAM_WEBHOOK_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     REDIS_URL: process.env.REDIS_URL,
-    UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
-    UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
     CRON_SECRET: process.env.CRON_SECRET,
 
     // Client URL resolution:
