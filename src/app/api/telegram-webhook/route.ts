@@ -13,6 +13,13 @@ import {
   getTelegramActive,
 } from "~/server/clients/redis";
 import { telegramUpdateInput } from "./_telegram-webhook.schema";
+import {
+  checkDinqclawTokenLimit,
+  DINQCLAW_DAILY_LIMIT_MESSAGE,
+  logDinqclawUsage,
+  resolveDinqId,
+  sumTokenUsage,
+} from "~/server/clients/dinqclaw-usage";
 
 function describeToolCall(tc: {
   toolName: string;
@@ -152,7 +159,7 @@ async function handleRegularMessage(
 ): Promise<void> {
   const instance = await db.composioClawInstance.findUnique({
     where: { telegramChatId: chatId },
-    select: { id: true },
+    select: { id: true, userId: true },
   });
 
   if (!instance) {
@@ -162,6 +169,17 @@ async function handleRegularMessage(
     );
     return;
   }
+
+  const allowed = await checkDinqclawTokenLimit(instance.userId);
+  if (!allowed) {
+    await sendTelegramMessage(chatId, DINQCLAW_DAILY_LIMIT_MESSAGE);
+    return;
+  }
+
+  const dinqId = await resolveDinqId({
+    userId: instance.userId,
+    telegramChatId: chatId,
+  });
 
   // Mark this update as the active generation for this instance.
   // If a previous generation is running, it will detect this change
@@ -216,6 +234,14 @@ async function handleRegularMessage(
           await sendChatAction(chatId, "typing");
         }
       },
+    });
+
+    const tokensUsed = sumTokenUsage(result.totalUsage);
+    await logDinqclawUsage({
+      userId: instance.userId,
+      dinqId,
+      tokensUsed,
+      messages: 1,
     });
 
     // Send final text only if it wasn't already sent via onStepFinish

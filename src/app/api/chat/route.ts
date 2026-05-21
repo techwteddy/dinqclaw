@@ -8,6 +8,12 @@ import {
   getStreamingMessage,
 } from "~/server/clients/redis";
 import { getStreamContext } from "./stream-store";
+import {
+  checkDinqclawTokenLimit,
+  DINQCLAW_DAILY_LIMIT_MESSAGE,
+  logDinqclawUsage,
+  resolveDinqId,
+} from "~/server/clients/dinqclaw-usage";
 import { TRPCError } from "@trpc/server";
 
 const chatRequestBody = z.object({
@@ -47,7 +53,14 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const { instanceId } = authResult;
+  const { userId, instanceId } = authResult;
+
+  const allowed = await checkDinqclawTokenLimit(userId);
+  if (!allowed) {
+    return new Response(DINQCLAW_DAILY_LIMIT_MESSAGE, { status: 429 });
+  }
+
+  const dinqId = await resolveDinqId({ userId });
 
   const body = chatRequestBody.safeParse(await request.json());
   if (!body.success) {
@@ -78,6 +91,14 @@ export async function POST(request: Request) {
     instanceId,
     userMessage: userText,
     source: "web",
+    onAgentFinish: async ({ tokensUsed }) => {
+      await logDinqclawUsage({
+        userId,
+        dinqId,
+        tokensUsed,
+        messages: 1,
+      });
+    },
   });
 
   const { agent, messages } = prepareResult.result;
