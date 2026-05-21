@@ -12,7 +12,6 @@ import {
   setTelegramActive,
   getTelegramActive,
 } from "~/server/clients/redis";
-import { checkTelegramMessageRateLimit } from "~/server/clients/ratelimit";
 import { telegramUpdateInput } from "./_telegram-webhook.schema";
 
 function describeToolCall(tc: {
@@ -97,12 +96,6 @@ export async function POST(request: Request) {
 
   if (text.startsWith("/start")) {
     await handleStartCommand(chatId, text);
-    return NextResponse.json({ ok: true });
-  }
-
-  const rateLimitMessage = await checkTelegramMessageRateLimit(chatId);
-  if (rateLimitMessage) {
-    await sendTelegramMessage(chatId, rateLimitMessage);
     return NextResponse.json({ ok: true });
   }
 
