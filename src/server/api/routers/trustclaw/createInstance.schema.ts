@@ -1,17 +1,25 @@
 import { z } from "zod";
 
-export const ALLOWED_ANTHROPIC_MODELS = [
-  "claude-sonnet-4-5-20250929",
-  "claude-opus-4-6",
-  "claude-haiku-4-5-20251001",
+export const ALLOWED_GEMINI_MODELS = [
+  "gemini-2.0-flash",
+  "gemini-1.5-pro",
+  "gemini-1.5-flash",
 ] as const;
 
-export const allowedAnthropicModelSchema = z.enum(ALLOWED_ANTHROPIC_MODELS);
+export const DEFAULT_GEMINI_MODEL = "gemini-2.0-flash";
+
+export type AllowedGeminiModel = (typeof ALLOWED_GEMINI_MODELS)[number];
+
+export const allowedGeminiModelSchema = z.enum(ALLOWED_GEMINI_MODELS);
+
+/** @deprecated Use allowedGeminiModelSchema — kept for gradual import renames */
+export const allowedAnthropicModelSchema = allowedGeminiModelSchema;
+
+/** @deprecated Use ALLOWED_GEMINI_MODELS */
+export const ALLOWED_ANTHROPIC_MODELS = ALLOWED_GEMINI_MODELS;
 
 export const createInstanceInput = z.object({
-  anthropicModel: allowedAnthropicModelSchema.default(
-    "claude-sonnet-4-5-20250929",
-  ),
+  anthropicModel: allowedGeminiModelSchema.default(DEFAULT_GEMINI_MODEL),
 });
 
 export type CreateInstanceInput = z.infer<typeof createInstanceInput>;

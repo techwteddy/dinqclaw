@@ -24,6 +24,7 @@ import {
 } from "./context/token-estimation";
 import { stripToolResultEchoes } from "./strip-tool-echoes";
 import { clearStreamingMessage } from "~/server/clients/redis";
+import { getAgentLanguageModel } from "~/server/clients/llm-model";
 import type { ReconstructedMessage } from "./types";
 
 type MessageSource = "web" | "telegram" | "cron";
@@ -170,19 +171,13 @@ export async function prepareAgentRun(
     },
   });
 
-  const modelString = instance.anthropicModel.startsWith("anthropic/")
-    ? instance.anthropicModel
-    : `anthropic/${instance.anthropicModel}`;
-  const model = modelString;
+  const model = getAgentLanguageModel(instance.anthropicModel);
 
   const agent = new ToolLoopAgent({
     model,
     instructions: {
       role: "system",
       content: systemPrompt,
-      providerOptions: {
-        anthropic: { cacheControl: { type: "ephemeral" } },
-      },
     } satisfies SystemModelMessage,
     tools: allTools,
     stopWhen: stepCountIs(100),

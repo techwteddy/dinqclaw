@@ -27,6 +27,12 @@ export const env = createEnv({
     // Dinq V1 Supabase (optional - token budget checks disabled when missing)
     SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
 
+    // Google Gemini (direct API key; on Vercel, AI Gateway can use AI_GATEWAY_API_KEY instead)
+    GOOGLE_GENERATIVE_AI_API_KEY: z.string().optional(),
+
+    // Vercel AI Gateway (optional - used for Gemini routing and embeddings when set)
+    AI_GATEWAY_API_KEY: z.string().optional(),
+
     // Cron auth. Required in production so unauthenticated callers can't hit
     // /api/cron/* endpoints. Vercel auto-injects this when crons are configured
     // in vercel.json; the deploy CLI also generates one on first deploy.
@@ -47,6 +53,8 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     REDIS_URL: process.env.REDIS_URL,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+    AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
     CRON_SECRET: process.env.CRON_SECRET,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
 

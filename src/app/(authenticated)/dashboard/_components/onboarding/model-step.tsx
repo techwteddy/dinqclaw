@@ -3,13 +3,13 @@
 import { motion } from "framer-motion";
 import { cn } from "~/lib/utils";
 import type { z } from "zod";
-import { allowedAnthropicModelSchema } from "~/server/api/routers/trustclaw/createInstance.schema";
+import { allowedGeminiModelSchema } from "~/server/api/routers/trustclaw/createInstance.schema";
 import { MODELS } from "./onboarding.consts";
 import { StepLayout, itemVariants } from "./step-layout";
 
 interface ModelStepProps {
-  value: z.infer<typeof allowedAnthropicModelSchema>;
-  onChange: (model: z.infer<typeof allowedAnthropicModelSchema>) => void;
+  value: z.infer<typeof allowedGeminiModelSchema>;
+  onChange: (model: z.infer<typeof allowedGeminiModelSchema>) => void;
   onNext: () => void;
   onBack: () => void;
 }
@@ -21,7 +21,7 @@ export function ModelStep({
   onBack,
 }: ModelStepProps) {
   const handleModelChange = (val: string) => {
-    const model = allowedAnthropicModelSchema.safeParse(val);
+    const model = allowedGeminiModelSchema.safeParse(val);
     if (!model.success) return;
     onChange(model.data);
   };
@@ -29,7 +29,7 @@ export function ModelStep({
   return (
     <StepLayout
       title="Choose my brain!"
-      subtitle="Which Claude model should power me?"
+      subtitle="Which Gemini model should power me?"
       onNext={onNext}
       onBack={onBack}
     >

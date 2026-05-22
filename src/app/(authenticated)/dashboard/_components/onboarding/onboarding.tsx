@@ -8,7 +8,10 @@ import { trpc } from "~/clients/trpc";
 import { showTrpcErrorToast } from "~/components/core/toast-notifications";
 import { ErrorBoundary } from "~/components/core/error-boundary";
 import { Button } from "~/components/ui/button";
-import { allowedAnthropicModelSchema } from "~/server/api/routers/trustclaw/createInstance.schema";
+import {
+  allowedGeminiModelSchema,
+  DEFAULT_GEMINI_MODEL,
+} from "~/server/api/routers/trustclaw/createInstance.schema";
 import {
   STEP_ORDER,
   DEFAULT_LANGUAGE,
@@ -49,7 +52,7 @@ interface OnboardingWizardState {
   personality: PersonalityKey | null;
   emoji: string | null;
   lore: string;
-  anthropicModel: z.infer<typeof allowedAnthropicModelSchema>;
+  anthropicModel: z.infer<typeof allowedGeminiModelSchema>;
 }
 
 function getAnimationState(step: Step): AnimationState {
@@ -108,7 +111,7 @@ export function Onboarding({
 
   const [step, setStep] = useState<Step>(initialStep);
   const [wizardState, setWizardState] = useState<OnboardingWizardState>(() => {
-    const parsedModel = allowedAnthropicModelSchema.safeParse(
+    const parsedModel = allowedGeminiModelSchema.safeParse(
       savedState?.anthropicModel,
     );
     return {
@@ -125,7 +128,7 @@ export function Onboarding({
       lore: savedState?.lore ?? "",
       anthropicModel: parsedModel.success
         ? parsedModel.data
-        : "claude-sonnet-4-5-20250929",
+        : DEFAULT_GEMINI_MODEL,
     };
   });
 
