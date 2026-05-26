@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const ALLOWED_GEMINI_MODELS = [
-  "gemini-2.0-flash",
   "gemini-1.5-pro",
   "gemini-1.5-flash",
+  "gemini-1.5-flash-8b",
 ] as const;
 
-export const DEFAULT_GEMINI_MODEL = "gemini-2.0-flash";
+export const DEFAULT_GEMINI_MODEL = "gemini-1.5-flash";
 
 export type AllowedGeminiModel = (typeof ALLOWED_GEMINI_MODELS)[number];
 
