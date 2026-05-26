@@ -19,18 +19,13 @@ import {
 
 const MODELS = [
   {
-    value: "gemini-1.5-pro",
-    label: "Gemini 1.5 Pro",
+    value: "gemini-3.5-flash",
+    label: "Gemini 3.5 Flash",
     description: "Most capable",
   },
   {
-    value: "gemini-1.5-flash",
-    label: "Gemini 1.5 Flash",
-    description: "Balanced",
-  },
-  {
-    value: "gemini-1.5-flash-8b",
-    label: "Gemini 1.5 Flash 8B",
+    value: "gemini-3.1-flash-lite",
+    label: "Gemini 3.1 Flash Lite",
     description: "Fast & affordable",
   },
 ] as const;
