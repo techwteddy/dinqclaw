@@ -69,21 +69,21 @@ export const CURATED_EMOJIS = [
 
 export const MODELS = [
   {
-    value: "gemini-2.0-flash" as const,
-    label: "Gemini 2.0 Flash",
-    description: "Fast",
-    cost: "$",
-  },
-  {
     value: "gemini-1.5-pro" as const,
     label: "Gemini 1.5 Pro",
-    description: "Balanced",
-    cost: "$$",
+    description: "Most capable",
+    cost: "$$$",
   },
   {
     value: "gemini-1.5-flash" as const,
     label: "Gemini 1.5 Flash",
-    description: "Affordable",
+    description: "Balanced",
+    cost: "$$",
+  },
+  {
+    value: "gemini-1.5-flash-8b" as const,
+    label: "Gemini 1.5 Flash 8B",
+    description: "Fast & affordable",
     cost: "$",
   },
 ] as const;
