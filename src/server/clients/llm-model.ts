@@ -1,7 +1,6 @@
 import "server-only";
 
-import type { LanguageModel } from "ai";
-import { google } from "~/server/clients/google-ai";
+import { gateway, type LanguageModel } from "ai";
 import {
   ALLOWED_GEMINI_MODELS,
   DEFAULT_GEMINI_MODEL,
@@ -23,5 +22,5 @@ export function resolveStoredGeminiModel(storedModelId: string): AllowedGeminiMo
 
 export function getAgentLanguageModel(storedModelId: string): LanguageModel {
   const modelId = resolveStoredGeminiModel(storedModelId);
-  return google(modelId);
+  return gateway(`google/${modelId}`);
 }
