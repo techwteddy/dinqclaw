@@ -8,9 +8,9 @@ import {
 } from "~/server/api/routers/trustclaw/createInstance.schema";
 
 const LEGACY_ANTHROPIC_MODEL_MAP: Record<string, AllowedGeminiModel> = {
-  "claude-sonnet-4-5-20250929": "gemini-1.5-flash",
-  "claude-opus-4-6": "gemini-1.5-pro",
-  "claude-haiku-4-5-20251001": "gemini-1.5-flash-8b",
+  "claude-sonnet-4-5-20250929": "gemini-3.1-flash-lite",
+  "claude-opus-4-6": "gemini-3.5-flash",
+  "claude-haiku-4-5-20251001": "gemini-3.1-flash-lite",
 };
 
 export function resolveStoredGeminiModel(storedModelId: string): AllowedGeminiModel {

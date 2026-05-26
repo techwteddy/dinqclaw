@@ -111,7 +111,7 @@ model ComposioClawInstance {
   userId String @unique
 
   // LLM config (Gemini model id, stored in anthropicModel column for compatibility)
-  anthropicModel String @default("gemini-1.5-flash")
+  anthropicModel String @default("gemini-3.1-flash-lite")
 
   // Telegram linking
   telegramChatId             String?   @unique
@@ -210,7 +210,7 @@ model OnboardingState {
   personality    String?
   emoji          String?
   lore           String   @default("") @db.Text
-  anthropicModel String   @default("gemini-1.5-flash")
+  anthropicModel String   @default("gemini-3.1-flash-lite")
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
