@@ -61,6 +61,67 @@ function describeToolCall(tc: {
   return "Working on it...";
 }
 
+function serializeErrorForLog(error: unknown): Record<string, unknown> {
+  if (error instanceof Error) {
+    const details = error as Error & {
+      cause?: unknown;
+      reason?: unknown;
+      statusCode?: unknown;
+      url?: unknown;
+      responseBody?: unknown;
+      lastError?: unknown;
+      errors?: unknown;
+    };
+
+    return {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      ...(details.reason !== undefined ? { reason: details.reason } : {}),
+      ...(details.statusCode !== undefined
+        ? { statusCode: details.statusCode }
+        : {}),
+      ...(details.url !== undefined ? { url: details.url } : {}),
+      ...(details.responseBody !== undefined
+        ? { responseBody: String(details.responseBody).slice(0, 4000) }
+        : {}),
+      ...(details.lastError instanceof Error
+        ? {
+            lastError: {
+              name: details.lastError.name,
+              message: details.lastError.message,
+              stack: details.lastError.stack,
+            },
+          }
+        : {}),
+      ...(Array.isArray(details.errors)
+        ? {
+            errors: details.errors.slice(0, 3).map((entry) =>
+              entry instanceof Error
+                ? {
+                    name: entry.name,
+                    message: entry.message,
+                    stack: entry.stack,
+                  }
+                : { value: String(entry) },
+            ),
+          }
+        : {}),
+      ...(details.cause instanceof Error
+        ? {
+            cause: {
+              name: details.cause.name,
+              message: details.cause.message,
+              stack: details.cause.stack,
+            },
+          }
+        : {}),
+    };
+  }
+
+  return { value: String(error) };
+}
+
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
@@ -109,7 +170,28 @@ export async function POST(request: Request) {
   // Respond immediately to Telegram, process the message in the background.
   // Agent runs can take 30-120+ seconds - exceeding Telegram's ~60s webhook
   // timeout - which previously caused Telegram to retry and duplicate messages.
-  after(handleRegularMessage(chatId, text, update_id));
+  after(
+    handleRegularMessage(chatId, text, update_id).catch(async (error) => {
+      console.error("[telegram] handleRegularMessage failed", {
+        chatId,
+        updateId: update_id,
+        error: serializeErrorForLog(error),
+      });
+
+      try {
+        await sendTelegramMessage(
+          chatId,
+          "I hit an error while processing that request. Please try again in a bit.",
+        );
+      } catch (sendError) {
+        console.error("[telegram] failed to send error message", {
+          chatId,
+          updateId: update_id,
+          error: serializeErrorForLog(sendError),
+        });
+      }
+    }),
+  );
   return NextResponse.json({ ok: true });
 }
 
@@ -159,7 +241,7 @@ async function handleRegularMessage(
 ): Promise<void> {
   const instance = await db.composioClawInstance.findUnique({
     where: { telegramChatId: chatId },
-    select: { id: true, userId: true },
+    select: { id: true, userId: true, anthropicModel: true },
   });
 
   if (!instance) {
@@ -200,6 +282,13 @@ async function handleRegularMessage(
   const abortController = new AbortController();
 
   try {
+    console.info("[telegram] starting agent.generate", {
+      chatId,
+      updateId,
+      instanceId: instance.id,
+      model: instance.anthropicModel,
+    });
+
     const result = await agent.generate({
       prompt: messages,
       abortSignal: abortController.signal,
@@ -227,13 +316,23 @@ async function handleRegularMessage(
         }
 
         // Send any text generated in this step
-        const stepText = stripToolResultEchoes(step.text).trim();
+        const stepText = stripToolResultEchoes(step.text ?? "").trim();
         if (stepText) {
           accumulatedText += stepText;
           await sendTelegramMessage(chatId, stepText.slice(0, 4096));
           await sendChatAction(chatId, "typing");
         }
       },
+    });
+
+    console.info("[telegram] agent.generate completed", {
+      chatId,
+      updateId,
+      instanceId: instance.id,
+      model: instance.anthropicModel,
+      stepCount: result.steps.length,
+      hasText: typeof result.text === "string" && result.text.trim().length > 0,
+      totalUsage: result.totalUsage ?? null,
     });
 
     const tokensUsed = sumTokenUsage(result.totalUsage);
@@ -245,7 +344,7 @@ async function handleRegularMessage(
     });
 
     // Send final text only if it wasn't already sent via onStepFinish
-    const finalText = stripToolResultEchoes(result.text).trim();
+    const finalText = stripToolResultEchoes(result.text ?? "").trim();
     if (!accumulatedText && finalText) {
       await sendTelegramMessage(chatId, finalText.slice(0, 4096));
     } else if (!accumulatedText && !finalText) {
@@ -257,6 +356,13 @@ async function handleRegularMessage(
       await sendTelegramMessage(chatId, "-");
       return;
     }
+    console.error("[telegram] agent.generate failed", {
+      chatId,
+      updateId,
+      instanceId: instance.id,
+      model: instance.anthropicModel,
+      error: serializeErrorForLog(error),
+    });
     throw error;
   }
 }
