@@ -12,15 +12,19 @@ function resolveApiKey(): string {
   return "";
 }
 
-function useAiGateway(): boolean {
+function shouldUseAiGateway(): boolean {
   return !!(
-    process.env.AI_GATEWAY_API_KEY ||
-    process.env.VERCEL ||
+    process.env.AI_GATEWAY_API_KEY ??
+    process.env.VERCEL ??
     process.env.VERCEL_OIDC_TOKEN
   );
 }
 
-export const google = createGoogleGenerativeAI({
-  apiKey: resolveApiKey(),
-  ...(useAiGateway() ? { baseURL: AI_GATEWAY_BASE_URL } : {}),
-});
+function createGoogleProvider() {
+  return createGoogleGenerativeAI({
+    apiKey: resolveApiKey(),
+    ...(shouldUseAiGateway() ? { baseURL: AI_GATEWAY_BASE_URL } : {}),
+  });
+}
+
+export const google = createGoogleProvider();

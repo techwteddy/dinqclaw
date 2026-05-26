@@ -1,5 +1,6 @@
 import "server-only";
 
+import type { PostgrestError } from "@supabase/supabase-js";
 import type { LanguageModelUsage } from "ai";
 import { getSupabaseAdmin, isSupabaseConfigured } from "~/server/clients/supabase";
 
@@ -25,10 +26,14 @@ export async function checkDinqclawTokenLimit(
   const supabase = getSupabaseAdmin();
   if (!supabase) return true;
 
-  const { data, error } = await supabase.rpc("check_dinqclaw_limit", {
+  const rpcResult: {
+    data: boolean | null;
+    error: PostgrestError | null;
+  } = await supabase.rpc("check_dinqclaw_limit", {
     p_user_id: userId,
     p_daily_limit: DINQCLAW_DAILY_TOKEN_LIMIT,
   });
+  const { data, error } = rpcResult;
 
   if (error) return true;
   return data === true;
