@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { allowedAnthropicModelSchema } from "./createInstance.schema";
+import {
+  allowedGeminiModelSchema,
+  DEFAULT_GEMINI_MODEL,
+} from "./createInstance.schema";
 
 export const onboardingStepSchema = z.enum([
   "name",
@@ -23,9 +26,7 @@ export const saveOnboardingStateInput = z.object({
   personality: z.string().nullable().default(null),
   emoji: z.string().nullable().default(null),
   lore: z.string().default(""),
-  anthropicModel: allowedAnthropicModelSchema.default(
-    "claude-sonnet-4-5-20250929",
-  ),
+  anthropicModel: allowedGeminiModelSchema.default(DEFAULT_GEMINI_MODEL),
 });
 
 export type SaveOnboardingStateInput = z.infer<typeof saveOnboardingStateInput>;

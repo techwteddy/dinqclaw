@@ -1,0 +1,26 @@
+import "server-only";
+
+import type { LanguageModel } from "ai";
+import { google } from "~/server/clients/google-ai";
+import {
+  ALLOWED_GEMINI_MODELS,
+  DEFAULT_GEMINI_MODEL,
+  type AllowedGeminiModel,
+} from "~/server/api/routers/trustclaw/createInstance.schema";
+
+const LEGACY_ANTHROPIC_MODEL_MAP: Record<string, AllowedGeminiModel> = {
+  "claude-sonnet-4-5-20250929": "gemini-2.0-flash",
+  "claude-opus-4-6": "gemini-1.5-pro",
+  "claude-haiku-4-5-20251001": "gemini-1.5-flash",
+};
+
+export function resolveStoredGeminiModel(storedModelId: string): AllowedGeminiModel {
+  if ((ALLOWED_GEMINI_MODELS as readonly string[]).includes(storedModelId)) {
+    return storedModelId as AllowedGeminiModel;
+  }
+  return LEGACY_ANTHROPIC_MODEL_MAP[storedModelId] ?? DEFAULT_GEMINI_MODEL;
+}
+
+export function getAgentLanguageModel(storedModelId: string): LanguageModel {
+  return google(resolveStoredGeminiModel(storedModelId));
+}

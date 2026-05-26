@@ -69,21 +69,21 @@ export const CURATED_EMOJIS = [
 
 export const MODELS = [
   {
-    value: "claude-opus-4-6" as const,
-    label: "Claude Opus 4.6",
-    description: "Most capable",
-    cost: "$$$",
+    value: "gemini-2.0-flash" as const,
+    label: "Gemini 2.0 Flash",
+    description: "Fast",
+    cost: "$",
   },
   {
-    value: "claude-sonnet-4-5-20250929" as const,
-    label: "Claude Sonnet 4.5",
+    value: "gemini-1.5-pro" as const,
+    label: "Gemini 1.5 Pro",
     description: "Balanced",
     cost: "$$",
   },
   {
-    value: "claude-haiku-4-5-20251001" as const,
-    label: "Claude Haiku 4.5",
-    description: "Fast & affordable",
+    value: "gemini-1.5-flash" as const,
+    label: "Gemini 1.5 Flash",
+    description: "Affordable",
     cost: "$",
   },
 ] as const;

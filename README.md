@@ -157,6 +157,8 @@ For Telegram, point your bot's webhook at `<NEXT_PUBLIC_APP_URL>/api/telegram-we
 | `REDIS_URL` _(optional)_ | Resumable streams + abort flags |
 | `NEXT_PUBLIC_SUPABASE_URL` _(optional)_ | Dinq V1 Supabase URL for token budget RPCs |
 | `SUPABASE_SERVICE_ROLE_KEY` _(optional)_ | Dinq V1 Supabase service role for token budget RPCs |
+| `GOOGLE_GENERATIVE_AI_API_KEY` _(optional)_ | Google Gemini API key (local dev without AI Gateway) |
+| `AI_GATEWAY_API_KEY` _(optional)_ | Vercel AI Gateway key (routes Gemini + embeddings locally) |
 | `TELEGRAM_BOT_TOKEN` _(optional)_ | Telegram bot |
 | `TELEGRAM_BOT_USERNAME` _(optional)_ | Telegram bot |
 | `TELEGRAM_WEBHOOK_SECRET` _(optional)_ | Telegram webhook auth |

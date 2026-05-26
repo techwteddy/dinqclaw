@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ALLOWED_ANTHROPIC_MODELS } from "./createInstance.schema";
+import { ALLOWED_GEMINI_MODELS } from "./createInstance.schema";
 
 const ianaTimezone = z
   .string()
@@ -16,7 +16,7 @@ const ianaTimezone = z
   );
 
 export const updateSettingsInput = z.object({
-  anthropicModel: z.enum(ALLOWED_ANTHROPIC_MODELS).optional(),
+  anthropicModel: z.enum(ALLOWED_GEMINI_MODELS).optional(),
   timezone: ianaTimezone.optional(),
 });
 

@@ -4,7 +4,10 @@ import { useState } from "react";
 import type { z } from "zod";
 import { Loader2 } from "lucide-react";
 import { trpc } from "~/clients/trpc";
-import { allowedAnthropicModelSchema } from "~/server/api/routers/trustclaw/createInstance.schema";
+import {
+  allowedGeminiModelSchema,
+  DEFAULT_GEMINI_MODEL,
+} from "~/server/api/routers/trustclaw/createInstance.schema";
 import { Button } from "~/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
@@ -16,30 +19,30 @@ import {
 
 const MODELS = [
   {
-    value: "claude-opus-4-6",
-    label: "Claude Opus 4.6",
-    description: "Most capable",
+    value: "gemini-2.0-flash",
+    label: "Gemini 2.0 Flash",
+    description: "Fast",
   },
   {
-    value: "claude-sonnet-4-5-20250929",
-    label: "Claude Sonnet 4.5",
+    value: "gemini-1.5-pro",
+    label: "Gemini 1.5 Pro",
     description: "Balanced",
   },
   {
-    value: "claude-haiku-4-5-20251001",
-    label: "Claude Haiku 4.5",
-    description: "Fast & affordable",
+    value: "gemini-1.5-flash",
+    label: "Gemini 1.5 Flash",
+    description: "Affordable",
   },
 ] as const;
 
-type AllowedModel = z.infer<typeof allowedAnthropicModelSchema>;
+type AllowedModel = z.infer<typeof allowedGeminiModelSchema>;
 
 interface ModelSettingsProps {
   currentModel: string;
 }
 
 export function ModelSettings({ currentModel }: ModelSettingsProps) {
-  const parsed = allowedAnthropicModelSchema.catch("claude-sonnet-4-5-20250929").parse(currentModel);
+  const parsed = allowedGeminiModelSchema.catch(DEFAULT_GEMINI_MODEL).parse(currentModel);
   const [selectedModel, setSelectedModel] = useState<AllowedModel>(parsed);
   const utils = trpc.useUtils();
 
@@ -58,16 +61,16 @@ export function ModelSettings({ currentModel }: ModelSettingsProps) {
       <CardHeader>
         <CardTitle>Model</CardTitle>
         <CardDescription>
-          Choose which Claude model powers your assistant
+          Choose which Gemini model powers your assistant
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label>Claude Model</Label>
+          <Label>Gemini Model</Label>
           <Select
             value={selectedModel}
             onValueChange={(val) => {
-              const model = allowedAnthropicModelSchema.safeParse(val);
+              const model = allowedGeminiModelSchema.safeParse(val);
               if (model.success) setSelectedModel(model.data);
             }}
           >
