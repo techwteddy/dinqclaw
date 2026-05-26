@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { IBM_Plex_Mono, Inter } from "next/font/google";
+import Script from "next/script";
 import { Toaster } from "sonner";
 import { TRPCReactProvider } from "~/clients/trpc";
 import { ThemeProvider } from "~/components/core/theme-provider";
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
     { rel: "icon", url: "/favicon.ico" },
   ],
-  themeColor: "#010812",
+  themeColor: "#6C5CE7",
 };
 
 export default async function RootLayout({
@@ -32,6 +33,16 @@ export default async function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${primary.variable} ${code.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#6C5CE7" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="DinqClaw" />
+      </head>
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider>
           <TRPCReactProvider>
@@ -40,6 +51,17 @@ export default async function RootLayout({
             <div id="dialog-portal" />
           </TRPCReactProvider>
         </ThemeProvider>
+        <Script id="register-service-worker" strategy="afterInteractive">
+          {`
+            if ("serviceWorker" in navigator) {
+              window.addEventListener("load", function () {
+                navigator.serviceWorker.register("/sw.js").catch(function (error) {
+                  console.error("[pwa] service worker registration failed:", error);
+                });
+              });
+            }
+          `}
+        </Script>
       </body>
     </html>
   );
