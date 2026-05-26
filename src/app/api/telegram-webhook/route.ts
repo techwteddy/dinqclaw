@@ -83,7 +83,9 @@ function serializeErrorForLog(error: unknown): Record<string, unknown> {
         : {}),
       ...(details.url !== undefined ? { url: details.url } : {}),
       ...(details.responseBody !== undefined
-        ? { responseBody: String(details.responseBody).slice(0, 4000) }
+        ? {
+            responseBody: JSON.stringify(details.responseBody).slice(0, 4000),
+          }
         : {}),
       ...(details.lastError instanceof Error
         ? {
@@ -282,7 +284,7 @@ async function handleRegularMessage(
   const abortController = new AbortController();
 
   try {
-    console.info("[telegram] starting agent.generate", {
+    console.error("[telegram] starting agent.generate", {
       chatId,
       updateId,
       instanceId: instance.id,
@@ -325,7 +327,7 @@ async function handleRegularMessage(
       },
     });
 
-    console.info("[telegram] agent.generate completed", {
+    console.error("[telegram] agent.generate completed", {
       chatId,
       updateId,
       instanceId: instance.id,
