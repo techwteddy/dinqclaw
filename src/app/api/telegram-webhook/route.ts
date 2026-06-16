@@ -204,7 +204,7 @@ async function handleStartCommand(chatId: string, text: string): Promise<void> {
   if (!token) {
     await sendTelegramMessage(
       chatId,
-      `Welcome! To link your DinqClaw agent, use the link from ${env.NEXT_PUBLIC_APP_URL}/dashboard/settings.`,
+      `Welcome! To link Lucy, use the link from ${env.NEXT_PUBLIC_APP_URL}/dashboard/settings.`,
     );
     return;
   }
@@ -232,7 +232,7 @@ async function handleStartCommand(chatId: string, text: string): Promise<void> {
 
   await sendTelegramMessage(
     chatId,
-    "Linked! I'm your DinqClaw agent. Send me a message anytime.",
+    "Linked! I'm Lucy. Send me a message anytime.",
   );
 }
 

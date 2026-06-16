@@ -23,7 +23,7 @@ export function NameStep({ value, onChange, onNext }: NameStepProps) {
         <Input
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Bro, Jarvis, Buddy, Ehit, Wendim..."
+          placeholder="Lucy, Addy, Jarvis..."
           maxLength={30}
           className="min-h-[44px]"
           autoFocus
