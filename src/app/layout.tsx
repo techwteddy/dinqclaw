@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
     { rel: "icon", url: "/favicon.ico" },
   ],
-  themeColor: "#C0142A",
+  themeColor: "#E8A045",
 };
 
 export default async function RootLayout({
@@ -35,7 +35,7 @@ export default async function RootLayout({
     <html lang="en" className={`${primary.variable} ${code.variable}`} suppressHydrationWarning>
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#C0142A" />
+        <meta name="theme-color" content="#E8A045" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"

@@ -2,7 +2,7 @@
   "name": "LucyClaw",
   "short_name": "LucyClaw",
   "description": "Your AI agent. Every app. Zero setup.",
-  "theme_color": "#C0142A",
+  "theme_color": "#E8A045",
   "background_color": "#010812",
   "display": "standalone",
   "start_url": "/",

@@ -35,9 +35,9 @@ function LogoMarquee({ reverse = false }: { reverse?: boolean }) {
 export function IntegrationHero() {
   return (
     <section className="relative overflow-hidden bg-[#010812] px-4 py-20 md:px-6 md:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.516_0.193_15/0.12),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.761_0.135_38/0.12),transparent_65%)]" />
       <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <span className="mb-4 inline-block rounded-full border border-[#C0142A]/30 bg-[#C0142A]/15 px-4 py-1.5 text-sm font-medium text-[#C0142A]">
+        <span className="mb-4 inline-block rounded-full border border-[#E8A045]/30 bg-[#E8A045]/15 px-4 py-1.5 text-sm font-medium text-[#E8A045]">
           1000+ Integrations
         </span>
         <h2 className="text-foreground text-2xl font-bold tracking-tight md:text-4xl lg:text-5xl">
@@ -55,7 +55,7 @@ export function IntegrationHero() {
       <div className="relative z-10 mt-10 flex justify-center">
         <Link
           href="/login"
-          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#C0142A] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#9E1022]"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#E8A045] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#C8862E]"
         >
           Get Started
           <ArrowRight className="h-4 w-4" />
