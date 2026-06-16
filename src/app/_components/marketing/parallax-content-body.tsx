@@ -26,7 +26,7 @@ export function ParallaxContentBody({
       <div className="col-span-1 md:col-span-12">
         <Link
           href={ctaHref}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-[#6C5CE7] px-9 py-4 text-base font-semibold text-white transition-colors hover:bg-[#5a4bd6] md:w-fit"
+          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-[#C0142A] px-9 py-4 text-base font-semibold text-white transition-colors hover:bg-[#9E1022] md:w-fit"
         >
           {ctaLabel}
           <FiArrowUpRight className="h-5 w-5" />

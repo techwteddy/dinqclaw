@@ -60,7 +60,7 @@ const ROWS: ComparisonRow[] = [
 function IndicatorIcon({ type }: { type: Indicator }) {
   switch (type) {
     case "check":
-      return <CircleCheck className="h-5 w-5 shrink-0 text-[#6C5CE7]" />;
+      return <CircleCheck className="h-5 w-5 shrink-0 text-[#C0142A]" />;
     case "warn":
       return <AlertTriangle className="h-5 w-5 shrink-0 text-muted-foreground" />;
     case "x":
@@ -133,7 +133,7 @@ export function ComparisonSection() {
           <Link href="/login">
             <Button
               size="lg"
-              className="h-12 w-full bg-[#6C5CE7] px-8 text-base hover:bg-[#5a4bd6] sm:w-auto"
+              className="h-12 w-full bg-[#C0142A] px-8 text-base hover:bg-[#9E1022] sm:w-auto"
             >
               Get Started
               <ArrowRight className="h-4 w-4" />
