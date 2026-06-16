@@ -14,7 +14,7 @@ export function LandingHero() {
           <div className="flex flex-col items-center gap-4 px-4 text-center">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
               Your AI that does things while you sleep.{" "}
-              <span className="italic text-[#C0142A]">Securely.</span>
+              <span className="italic text-[#E8A045]">Securely.</span>
             </h1>
             <p className="max-w-2xl text-base text-muted-foreground md:text-lg lg:text-xl">
               LucyClaw is a 24/7 AI assistant with 1000+ tools via{" "}
@@ -27,13 +27,13 @@ export function LandingHero() {
               href="/login"
               className="inline-flex items-center gap-2 text-lg font-semibold text-foreground underline underline-offset-4 md:text-xl"
             >
-              <Zap className="h-5 w-5 text-[#C0142A]" />
+              <Zap className="h-5 w-5 text-[#E8A045]" />
               Deploy in seconds.
             </Link>
             <Link href="/login">
               <Button
                 size="lg"
-                className="h-12 min-h-[44px] w-full bg-[#C0142A] px-8 text-base hover:bg-[#9E1022] sm:w-auto"
+                className="h-12 min-h-[44px] w-full bg-[#E8A045] px-8 text-base hover:bg-[#C8862E] sm:w-auto"
               >
                 Get Started
                 <ArrowRight className="h-4 w-4" />

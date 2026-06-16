@@ -46,7 +46,7 @@ export function ParallaxSections() {
                     </span>
                   )}
                   {platform.live && (
-                    <span className="ml-1 text-xs text-[#C0142A]">Live</span>
+                    <span className="ml-1 text-xs text-[#E8A045]">Live</span>
                   )}
                 </span>
               </div>
@@ -84,7 +84,7 @@ export function ParallaxSections() {
                 key={item.text}
                 className="flex gap-3 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
               >
-                <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#C0142A]" />
+                <item.icon className="mt-0.5 h-5 w-5 shrink-0 text-[#E8A045]" />
                 <span className="text-muted-foreground text-sm md:text-base">
                   {item.text}
                 </span>
@@ -128,7 +128,7 @@ export function ParallaxSections() {
                 className="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl"
               >
                 <div className="mb-1 flex items-center gap-2">
-                  <item.icon className="h-5 w-5 text-[#C0142A]" />
+                  <item.icon className="h-5 w-5 text-[#E8A045]" />
                   <span className="text-foreground font-semibold">
                     {item.title}
                   </span>
