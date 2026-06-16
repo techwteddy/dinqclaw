@@ -87,7 +87,7 @@ function assembleIdentityPrompt(data: OnboardingData): string {
   const sections = [
     `## Identity`,
     ``,
-    `**Name:** ${data.name ?? "DinqClaw"}`,
+    `**Name:** ${data.name ?? "Lucy"}`,
     `**Emoji:** ${data.emoji ?? ""}`,
     `**Personality:** ${personalityLabel}`,
     `**Writing Style:** ${writingStyleLabel}`,
@@ -115,7 +115,7 @@ function assembleSoulPrompt(data: OnboardingData): string {
 
   return `## Who You Are
 
-You are ${data.name ?? "DinqClaw"} ${data.emoji ?? ""}, a ${personalityLabel.toLowerCase()} AI assistant.
+You are ${data.name ?? "Lucy"} ${data.emoji ?? ""}, a ${personalityLabel.toLowerCase()} AI assistant.
 
 ### Communication Style
 

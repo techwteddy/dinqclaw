@@ -18,7 +18,7 @@ export const toggleCronJob = protectedProcedure
       if (!instance) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "DinqClaw instance not found",
+          message: "LucyClaw instance not found",
         });
       }
 
