@@ -51,10 +51,10 @@
 }
 
 :root {
-  --dinq-accent: #6c5ce7;
+  --dinq-accent: #c0142a;
   --dinq-bg: #010812;
-  --dinq-accent-oklch: oklch(0.542 0.213 277);
-  --dinq-accent-dark-oklch: oklch(0.45 0.17 277);
+  --dinq-accent-oklch: oklch(0.516 0.193 15);
+  --dinq-accent-dark-oklch: oklch(0.448 0.166 15);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -248,9 +248,9 @@
   background: linear-gradient(
     135deg,
     #010812 0%,
-    #1a0f3d 35%,
+    #1a080c 35%,
     #0a1628 65%,
-    #6c5ce7 100%
+    #c0142a 100%
   );
   background-size: 200% 200%;
   animation: hero-gradient-shift 8s ease-in-out infinite;
