@@ -23,7 +23,7 @@ export function DinqClawBrand({ size = "md", logoLink }: DinqClawBrandProps) {
     <div className={`flex items-center ${s.gap}`}>
       {logoLink ? <Link href={logoLink}>{logo}</Link> : logo}
       <div className="flex flex-col leading-tight">
-        <span className={`${s.text} font-bold text-foreground`}>LucyClaw</span>
+        <span className={`${s.text} font-bold text-foreground`}>DinqClaw</span>
         <span className={`${s.by} text-muted-foreground`}>by Dinq</span>
       </div>
     </div>

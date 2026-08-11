@@ -17,7 +17,7 @@ export function LandingHero() {
               <span className="italic text-[#E8A045]">Securely.</span>
             </h1>
             <p className="max-w-2xl text-base text-muted-foreground md:text-lg lg:text-xl">
-              LucyClaw is a 24/7 AI assistant with 1000+ tools via{" "}
+              DinqClaw is a 24/7 AI assistant with 1000+ tools via{" "}
               <strong className="text-foreground">OAuth</strong> and{" "}
               <strong className="text-foreground">sandboxed execution</strong>.
               Built on the ideas behind OpenClaw, rebuilt from scratch for
