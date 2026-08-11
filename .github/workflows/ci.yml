@@ -38,6 +38,9 @@ jobs:
           CRON_SECRET=dummy
           EOF
 
+      - name: Generate Prisma client
+        run: pnpm prisma generate
+
       - name: Typecheck
         run: pnpm typecheck
 
