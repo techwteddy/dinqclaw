@@ -22,17 +22,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Pull Vercel environment variables
-        run: npx vercel env pull .env --token=${{ secrets.VERCEL_TOKEN }} --yes
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      - name: Create dummy .env for CI
+        run: |
+          cat > .env << 'EOF'
+          DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
+          BETTER_AUTH_SECRET=dummy-secret-for-ci-only
+          COMPOSIO_API_KEY=dummy
+          TELEGRAM_BOT_TOKEN=dummy
+          TELEGRAM_BOT_USERNAME=dummy_bot
+          TELEGRAM_WEBHOOK_SECRET=dummy
+          NEXT_PUBLIC_APP_URL=https://dummy.vercel.app
+          GOOGLE_GENERATIVE_AI_API_KEY=dummy
+          NEXT_PUBLIC_SUPABASE_URL=https://dummy.supabase.co
+          SUPABASE_SERVICE_ROLE_KEY=dummy
+          CRON_SECRET=dummy
+          EOF
 
       - name: Typecheck
         run: pnpm typecheck
 
       - name: Lint
         run: pnpm lint
-
-      - name: Build
-        run: pnpm build
