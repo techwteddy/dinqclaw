@@ -22,5 +22,6 @@ export function resolveStoredGeminiModel(storedModelId: string): AllowedGeminiMo
 
 export function getAgentLanguageModel(storedModelId: string): LanguageModel {
   const modelId = resolveStoredGeminiModel(storedModelId);
+  console.error("[LLM] model loaded:", modelId);
   return gateway(`google/${modelId}`);
 }

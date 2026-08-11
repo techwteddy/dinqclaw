@@ -109,7 +109,7 @@ export function TelegramSettings() {
                 </Button>
               }
               title="Unlink Telegram"
-              description="This will disconnect Telegram from your LucyClaw instance. You can re-link it later."
+              description="This will disconnect Telegram from your DinqClaw instance. You can re-link it later."
               confirmLabel="Unlink"
               onConfirm={() => void unlinkTelegram.mutateAsync()}
               isPending={unlinkTelegram.isPending}

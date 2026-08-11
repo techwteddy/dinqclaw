@@ -17,7 +17,7 @@ export const deleteCronJob = protectedProcedure
       if (!instance) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "LucyClaw instance not found",
+          message: "DinqClaw instance not found",
         });
       }
 
