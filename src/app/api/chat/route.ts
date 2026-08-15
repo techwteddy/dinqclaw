@@ -8,7 +8,6 @@ import {
   getStreamingMessage,
 } from "~/server/clients/redis";
 import { getStreamContext } from "./stream-store";
-import { TRPCError } from "@trpc/server";
 
 const chatRequestBody = z.object({
   messages: z.array(
@@ -23,7 +22,7 @@ const chatRequestBody = z.object({
 async function getAuthenticatedInstance(request: Request) {
   const session = await auth.api.getSession({ headers: request.headers });
   if (!session) {
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+    return null;
   }
 
   const userId = session.user.id;
@@ -33,7 +32,7 @@ async function getAuthenticatedInstance(request: Request) {
   });
 
   if (!instance) {
-    throw new TRPCError({ code: "NOT_FOUND" });
+    return null;
   }
 
   return { userId, instanceId: instance.id };
@@ -113,6 +112,9 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
   const authResult = await getAuthenticatedInstance(request);
+  if (!authResult) {
+    return new Response("Unauthorized", { status: 401 });
+  }
 
   const { instanceId } = authResult;
   const url = new URL(request.url);
