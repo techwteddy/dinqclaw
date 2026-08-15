@@ -5,6 +5,9 @@ import { trpc } from "~/clients/trpc";
 import Link from "next/link";
 import { ErrorDisplay } from "~/components/core/error-display";
 import { ErrorBoundary } from "~/components/core/error-boundary";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import { ModelSettings } from "./model-settings";
 import { TelegramSettings } from "./telegram-settings";
 import { CronJobsSettings } from "./cron-jobs-settings";
@@ -52,6 +55,28 @@ export function SettingsPageClient() {
         <Settings className="text-muted-foreground h-5 w-5" />
         <h1 className="text-xl font-semibold md:text-2xl">Settings</h1>
       </div>
+
+      <ErrorBoundary>
+        <Card>
+          <CardHeader>
+            <CardTitle>Profile</CardTitle>
+            <CardDescription>
+              Account identifiers assigned by Dinq
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              <Label htmlFor="dinq-id">Dinq ID</Label>
+              <Input
+                id="dinq-id"
+                value={data?.dinqId ?? "Not assigned yet — contact Ted"}
+                readOnly
+                disabled
+              />
+            </div>
+          </CardContent>
+        </Card>
+      </ErrorBoundary>
 
       <ErrorBoundary>
         <ModelSettings currentModel={instance.anthropicModel} />

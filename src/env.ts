@@ -37,6 +37,9 @@ export const env = createEnv({
     // /api/cron/* endpoints. Vercel auto-injects this when crons are configured
     // in vercel.json; the deploy CLI also generates one on first deploy.
     CRON_SECRET: z.string(),
+
+    // Widget lead notify endpoint (optional — /api/notify disabled when missing)
+    DINQCLAW_NOTIFY_API_KEY: z.string().optional(),
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().url(),
@@ -56,6 +59,7 @@ export const env = createEnv({
     GOOGLE_GENERATIVE_AI_API_KEY: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
     AI_GATEWAY_API_KEY: process.env.AI_GATEWAY_API_KEY,
     CRON_SECRET: process.env.CRON_SECRET,
+    DINQCLAW_NOTIFY_API_KEY: process.env.DINQCLAW_NOTIFY_API_KEY,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
 
     // Client URL resolution:
