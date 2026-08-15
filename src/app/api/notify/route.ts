@@ -10,33 +10,40 @@ export async function POST(req: Request) {
   }
 
   const body = (await req.json()) as {
-    user_id: string;
+    dinq_id: string;
     name: string;
     email: string;
     message: string;
     source_url: string;
   };
 
-  const { user_id, name, email, message, source_url } = body;
+  const { dinq_id, name, email, message, source_url } = body;
 
-  if (!user_id || !name || !email || !message) {
+  if (!dinq_id || !name || !email || !message) {
     return NextResponse.json(
       { error: "Missing required fields" },
       { status: 400 },
     );
   }
 
-  const instance = await db.composioClawInstance.findUnique({
-    where: { userId: user_id },
-    select: { telegramChatId: true },
+  const user = await db.user.findUnique({
+    where: { dinqId: dinq_id },
+    include: {
+      instances: {
+        select: { telegramChatId: true },
+        take: 1,
+      },
+    },
   });
 
-  if (!instance) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  if (!user) {
+    return NextResponse.json({ error: "Client not found" }, { status: 404 });
   }
 
-  if (!instance.telegramChatId) {
-    console.error("[notify] user has no Telegram linked:", user_id);
+  const telegramChatId = user.instances[0]?.telegramChatId;
+
+  if (!telegramChatId) {
+    console.error("[notify] user has no Telegram linked:", dinq_id);
     return NextResponse.json(
       { ok: true, warning: "No Telegram linked" },
       { status: 200 },
@@ -53,7 +60,7 @@ export async function POST(req: Request) {
 Reply here to follow up with Lucy 👇`;
 
   try {
-    await sendTelegramMessage(instance.telegramChatId, telegramMessage);
+    await sendTelegramMessage(telegramChatId, telegramMessage);
   } catch (error) {
     console.error("[notify] Telegram send failed:", error);
     return NextResponse.json(

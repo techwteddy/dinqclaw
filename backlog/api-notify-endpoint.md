@@ -1,6 +1,6 @@
 # /api/notify — Lead Notification Endpoint
 
-**Status:** In Progress
+**Status:** Done
 **Priority:** High
 **Project:** DinqClaw — Widget Tier
 
@@ -10,5 +10,5 @@ POST endpoint that receives lead data from DinqDigital client websites and sends
 ## Endpoint
 POST /api/notify
 Headers: x-api-key, Content-Type: application/json
-Body: user_id, name, email, message, source_url
+Body: dinq_id, name, email, message, source_url
 Responses: 200, 401, 404, 500

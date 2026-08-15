@@ -37,7 +37,7 @@ export const getInstance = protectedProcedure.query(async ({ ctx }) => {
     }),
     db.user.findUnique({
       where: { id: userId },
-      select: { timezone: true },
+      select: { timezone: true, dinqId: true },
     }),
   ]);
 
@@ -45,6 +45,7 @@ export const getInstance = protectedProcedure.query(async ({ ctx }) => {
     instance: instance ?? null,
     onboardingState: onboardingState ?? null,
     timezone: user?.timezone ?? "UTC",
+    dinqId: user?.dinqId ?? null,
     telegramConfigured: isTelegramConfigured(),
   };
 });
