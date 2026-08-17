@@ -1,37 +1,6 @@
 import moment from "moment";
 import { db } from "~/server/clients/db";
 
-function messagePreview(content: unknown): string {
-  if (typeof content === "string") {
-    return content.slice(0, 160);
-  }
-
-  if (Array.isArray(content)) {
-    const texts: string[] = [];
-    for (const part of content) {
-      if (
-        typeof part === "object" &&
-        part !== null &&
-        "type" in part &&
-        part.type === "text" &&
-        "text" in part &&
-        typeof part.text === "string"
-      ) {
-        texts.push(part.text);
-      }
-    }
-    if (texts.length > 0) {
-      return texts.join(" ").slice(0, 160);
-    }
-  }
-
-  try {
-    return JSON.stringify(content).slice(0, 160);
-  } catch {
-    return "(unreadable)";
-  }
-}
-
 export default async function AdminActivityPage() {
   const [totalUsers, telegramConnected, totalMessages, recentMessages] =
     await Promise.all([
@@ -106,31 +75,40 @@ export default async function AdminActivityPage() {
                   </td>
                 </tr>
               ) : (
-                recentMessages.map((msg) => (
-                  <tr
-                    key={msg.id}
-                    className="border-b border-border/20 last:border-0"
-                  >
-                    <td className="px-3 py-2.5 md:px-4">
-                      <div>{msg.instance.user.name}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {msg.instance.user.email}
-                      </div>
-                    </td>
-                    <td className="px-3 py-2.5 capitalize md:px-4">
-                      {msg.role}
-                    </td>
-                    <td className="px-3 py-2.5 capitalize md:px-4">
-                      {msg.source}
-                    </td>
-                    <td className="max-w-xs truncate px-3 py-2.5 text-muted-foreground md:px-4">
-                      {messagePreview(msg.content)}
-                    </td>
-                    <td className="whitespace-nowrap px-3 py-2.5 text-muted-foreground md:px-4">
-                      {moment(msg.createdAt).format("MMM D, YYYY h:mm A")}
-                    </td>
-                  </tr>
-                ))
+                recentMessages.map((msg) => {
+                  const content = msg.content as
+                    | { type: string; text: string }[]
+                    | { type: string; text: string };
+                  const text = Array.isArray(content)
+                    ? (content.find((c) => c.type === "text")?.text ?? "")
+                    : (content.text ?? "");
+
+                  return (
+                    <tr
+                      key={msg.id}
+                      className="border-b border-border/20 last:border-0"
+                    >
+                      <td className="px-3 py-2.5 md:px-4">
+                        <div>{msg.instance.user.name}</div>
+                        <div className="text-xs text-muted-foreground">
+                          {msg.instance.user.email}
+                        </div>
+                      </td>
+                      <td className="px-3 py-2.5 capitalize md:px-4">
+                        {msg.role}
+                      </td>
+                      <td className="px-3 py-2.5 capitalize md:px-4">
+                        {msg.source}
+                      </td>
+                      <td className="max-w-xs truncate px-3 py-2.5 text-muted-foreground md:px-4">
+                        {text.slice(0, 160)}
+                      </td>
+                      <td className="whitespace-nowrap px-3 py-2.5 text-muted-foreground md:px-4">
+                        {moment(msg.createdAt).format("MMM D, YYYY h:mm A")}
+                      </td>
+                    </tr>
+                  );
+                })
               )}
             </tbody>
           </table>
