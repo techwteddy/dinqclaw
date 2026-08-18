@@ -50,6 +50,10 @@ model User {
   accounts        Account[]
   instances       ComposioClawInstance[]
   onboardingState OnboardingState?
+  entitlements    Entitlement[]
+  usageEvents     UsageEvent[]
+  orgMemberships  OrganizationMember[]
+  leads           Lead[]
 
   @@unique([email])
   @@map("user")
@@ -134,11 +138,14 @@ model ComposioClawInstance {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  orgId String?
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   messages Message[]
   memories Memory[]
   cronJobs CronJob[]
+  packs    Pack[]
 
   @@index([userId])
   @@map("composio_claw_instance")
@@ -218,5 +225,141 @@ model OnboardingState {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("onboarding_state")
+  @@schema("public")
+}
+
+enum PackType {
+  PERSONAL
+  BUSINESS
+  CREATOR
+
+  @@schema("public")
+}
+
+enum EntitlementStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+  EXPIRED
+
+  @@schema("public")
+}
+
+enum LeadStatus {
+  NEW
+  CONTACTED
+  QUALIFIED
+  CONVERTED
+  LOST
+
+  @@schema("public")
+}
+
+model Pack {
+  id          String    @id @default(cuid())
+  instanceId  String
+  type        PackType
+  active      Boolean   @default(false)
+  config      Json?
+  activatedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  instance ComposioClawInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@unique([instanceId, type])
+  @@index([instanceId])
+  @@map("dinqclaw_pack")
+  @@schema("public")
+}
+
+model Plan {
+  id            String   @id @default(cuid())
+  key           String   @unique
+  name          String
+  packType      PackType
+  stripePriceId String   @unique
+  config        Json?
+  active        Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("dinqclaw_plan")
+  @@schema("public")
+}
+
+model Entitlement {
+  id                   String            @id @default(cuid())
+  userId               String
+  packType             PackType
+  status               EntitlementStatus @default(ACTIVE)
+  stripeCustomerId     String?
+  stripeSubscriptionId String?           @unique
+  stripePriceId        String?
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean           @default(false)
+  createdAt            DateTime          @default(now())
+  updatedAt            DateTime          @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("dinqclaw_entitlement")
+  @@schema("public")
+}
+
+model UsageEvent {
+  id         String    @id @default(cuid())
+  userId     String
+  instanceId String?
+  packType   PackType?
+  type       String
+  quantity   Int       @default(1)
+  metadata   Json?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([instanceId, createdAt])
+  @@map("dinqclaw_usage_event")
+  @@schema("public")
+}
+
+model OrganizationMember {
+  id     String @id @default(cuid())
+  orgId  String
+  userId String
+  role   String @default("member")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([orgId, userId])
+  @@index([orgId])
+  @@index([userId])
+  @@map("dinqclaw_org_member")
+  @@schema("public")
+}
+
+model Lead {
+  id        String     @id @default(cuid())
+  orgId     String
+  userId    String
+  name      String
+  email     String
+  message   String     @db.Text
+  sourceUrl String
+  status    LeadStatus @default(NEW)
+  metadata  Json?
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([orgId, createdAt])
+  @@index([userId])
+  @@map("dinqclaw_lead")
   @@schema("public")
 }
