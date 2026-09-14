@@ -56,7 +56,7 @@ export function DinqClawSidebar({ dinqId }: DinqClawSidebarProps) {
               </div>
               <div className="grid flex-1 text-left leading-tight">
                 <span className="truncate font-semibold tracking-tight">
-                  DinqClaw
+                  Redat
                 </span>
                 <span className="truncate text-xs text-muted-foreground">
                   by Dinq

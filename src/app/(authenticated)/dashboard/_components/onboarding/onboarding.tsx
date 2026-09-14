@@ -228,7 +228,7 @@ export function Onboarding({
                 Setting things up...
               </h2>
               <p className="text-muted-foreground mt-1 text-sm">
-                Creating your DinqClaw instance and connecting tools
+                Creating your Redat instance and connecting tools
               </p>
             </motion.div>
             {createInstance.isError && (

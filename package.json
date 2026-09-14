@@ -1,9 +1,9 @@
 {
-  "name": "dinqclaw",
+  "name": "redat",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "DinqClaw — a self-hostable personal AI agent with vector memory, Composio tools, and Telegram.",
+  "description": "Redat — Your AI personal assistant with vector memory, Composio tools, and Telegram.",
   "license": "MIT",
   "author": "Composio <sarah@composio.dev>",
   "repository": {

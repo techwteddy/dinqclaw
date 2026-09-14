@@ -15,7 +15,7 @@ export const updateSettings = protectedProcedure
     if (!instance) {
       throw new TRPCError({
         code: "NOT_FOUND",
-        message: "DinqClaw instance not found",
+        message: "Redat instance not found",
       });
     }
 
