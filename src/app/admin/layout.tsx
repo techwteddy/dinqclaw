@@ -28,7 +28,7 @@ export default async function AdminLayout({
           href="/admin/users"
           className="mb-6 text-lg font-semibold text-[#E8A045]"
         >
-          DinqClaw Admin
+          Redat Admin
         </Link>
         <nav className="flex flex-col gap-1">
           {NAV_LINKS.map((link) => (

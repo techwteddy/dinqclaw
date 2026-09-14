@@ -19,8 +19,8 @@ const code = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DinqClaw",
-  description: "Your 24/7 AI assistant with 1000+ integrations.",
+  title: "Redat",
+  description: "Redat — Your AI personal assistant",
   icons: [
     { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
     { rel: "icon", url: "/favicon.ico" },
@@ -41,7 +41,7 @@ export default async function RootLayout({
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
-        <meta name="apple-mobile-web-app-title" content="DinqClaw" />
+        <meta name="apple-mobile-web-app-title" content="Redat" />
       </head>
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider>

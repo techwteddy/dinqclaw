@@ -18,7 +18,7 @@ export default async function AdminUsersPage() {
           Users
         </h1>
         <p className="text-sm text-muted-foreground">
-          All DinqClaw accounts ({users.length})
+          All Redat accounts ({users.length})
         </p>
       </div>
       <AdminUsersTable users={users} />
