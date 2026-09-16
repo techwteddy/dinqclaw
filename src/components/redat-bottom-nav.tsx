@@ -2,22 +2,16 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  MessageCircle,
-  CheckSquare,
-  Lightbulb,
-  Target,
-  Plug,
-} from "lucide-react";
+import { CheckSquare, MessageCircle, Plug, Settings, Target } from "lucide-react";
 
 import { cn } from "~/lib/utils";
 
 const NAV_ITEMS = [
   { title: "Chat", url: "/dashboard", icon: MessageCircle },
   { title: "Tasks", url: "/dashboard/tasks", icon: CheckSquare },
-  { title: "Ideas", url: "/dashboard/ideas", icon: Lightbulb },
   { title: "Goals", url: "/dashboard/goals", icon: Target },
   { title: "Connect", url: "/dashboard/toolkits", icon: Plug },
+  { title: "Settings", url: "/dashboard/settings", icon: Settings },
 ] as const;
 
 export function RedatBottomNav() {
