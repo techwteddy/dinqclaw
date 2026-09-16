@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LogOut, PanelRight } from "lucide-react";
 import { Button } from "~/components/ui/button";
@@ -9,7 +10,7 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { ThemeToggle } from "~/components/core/theme-toggle";
-import { DinqClawBrand } from "~/app/_components/dinqclaw-brand";
+import { OpenClawLogo } from "~/app/_components/openclaw-logo";
 import { authClient } from "~/clients/auth/react";
 import { useTerminalStore } from "./terminal-store";
 
@@ -29,10 +30,18 @@ export function DashboardNavbar() {
   };
 
   return (
-    <header className="border-border bg-background/95 flex h-14 shrink-0 items-center justify-between border-b px-4 backdrop-blur">
-      <DinqClawBrand size="sm" logoLink="/dashboard" />
+    <header className="border-border bg-background/95 grid h-14 shrink-0 grid-cols-[1fr_auto_1fr] items-center border-b px-4 backdrop-blur">
+      <div aria-hidden />
 
-      <div className="flex items-center gap-1">
+      <Link
+        href="/dashboard"
+        className="flex items-center justify-center gap-1.5"
+      >
+        <OpenClawLogo size={20} />
+        <span className="text-foreground text-xs font-bold">Redat</span>
+      </Link>
+
+      <div className="flex items-center justify-end gap-1">
         {isChat && (
           <Tooltip>
             <TooltipTrigger asChild>
