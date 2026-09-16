@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
-  Activity,
+  CheckSquare,
   ExternalLink,
-  Home,
   MessageCircle,
-  Puzzle,
+  Plug,
   Settings,
-  ListTodo,
+  Target,
 } from "lucide-react";
 
 import { cn } from "~/lib/utils";
@@ -28,11 +27,10 @@ import {
 } from "~/components/ui/sidebar";
 
 const NAV_ITEMS = [
-  { title: "Home", url: "/dashboard", icon: Home, exact: true },
   { title: "Chat", url: "/dashboard", icon: MessageCircle, exact: true },
-  { title: "Tasks", url: "/dashboard/tasks", icon: ListTodo },
-  { title: "Activity", url: "/dashboard/activity", icon: Activity },
-  { title: "Connections", url: "/dashboard/toolkits", icon: Puzzle },
+  { title: "Tasks", url: "/dashboard/tasks", icon: CheckSquare },
+  { title: "Goals", url: "/dashboard/goals", icon: Target },
+  { title: "Connect", url: "/dashboard/toolkits", icon: Plug },
   { title: "Settings", url: "/dashboard/settings", icon: Settings },
 ] as const;
 

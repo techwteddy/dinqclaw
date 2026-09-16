@@ -1,6 +1,7 @@
 import { headers } from "next/headers";
 import { ErrorBoundary } from "~/components/core/error-boundary";
 import { DinqClawSidebar } from "~/components/dinqclaw-sidebar";
+import { RedatBottomNav } from "~/components/redat-bottom-nav";
 import { SidebarInset, SidebarProvider } from "~/components/ui/sidebar";
 import { TooltipProvider } from "~/components/ui/tooltip";
 import { auth } from "~/server/auth";
@@ -31,8 +32,9 @@ export default async function DashboardLayout({
             <ErrorBoundary>
               <DashboardNavbar />
             </ErrorBoundary>
-            <main className="min-h-0 flex-1">{children}</main>
+            <main className="min-h-0 flex-1 pb-20 md:pb-0">{children}</main>
           </div>
+          <RedatBottomNav />
         </SidebarInset>
       </SidebarProvider>
     </TooltipProvider>
