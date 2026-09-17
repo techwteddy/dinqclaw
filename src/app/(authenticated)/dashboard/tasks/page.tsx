@@ -1,13 +1,17 @@
-import { CheckSquare } from "lucide-react";
+import { trpcServer, HydrateClient } from "~/clients/trpc/server";
+import { ErrorBoundary } from "~/components/core/error-boundary";
+import { TasksPageClient } from "./_components/tasks-page-client";
 
 export default function Page() {
+  void trpcServer.api.trustclaw.getCronJobs.prefetchInfinite({ limit: 20 });
+
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-      <CheckSquare className="text-muted-foreground/50 size-10" />
-      <h1 className="text-xl font-semibold md:text-2xl">Tasks coming soon</h1>
-      <p className="text-muted-foreground max-w-sm text-sm">
-        Lucy will keep track of what you need to get done here.
-      </p>
-    </div>
+    <HydrateClient>
+      <div className="h-full overflow-y-auto">
+        <ErrorBoundary>
+          <TasksPageClient />
+        </ErrorBoundary>
+      </div>
+    </HydrateClient>
   );
 }

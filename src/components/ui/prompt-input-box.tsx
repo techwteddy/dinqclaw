@@ -440,6 +440,7 @@ interface PromptInputBoxProps {
   isLoading?: boolean;
   placeholder?: string;
   className?: string;
+  initialValue?: string;
 }
 export const PromptInputBox = React.forwardRef(
   (props: PromptInputBoxProps, ref: React.Ref<HTMLDivElement>) => {
@@ -449,8 +450,9 @@ export const PromptInputBox = React.forwardRef(
       isLoading = false,
       placeholder = "Type your message here...",
       className,
+      initialValue = "",
     } = props;
-    const [input, setInput] = React.useState("");
+    const [input, setInput] = React.useState(initialValue);
     const [files, setFiles] = React.useState<File[]>([]);
     const [filePreviews, setFilePreviews] = React.useState<
       Record<string, string>
