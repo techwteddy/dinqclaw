@@ -1,13 +1,12 @@
-import { Target } from "lucide-react";
+import { ErrorBoundary } from "~/components/core/error-boundary";
+import { GoalsPageClient } from "./_components/goals-page-client";
 
 export default function Page() {
   return (
-    <div className="flex h-full flex-col items-center justify-center gap-3 p-6 text-center">
-      <Target className="text-muted-foreground/50 size-10" />
-      <h1 className="text-xl font-semibold md:text-2xl">Goals coming soon</h1>
-      <p className="text-muted-foreground max-w-sm text-sm">
-        Set targets and track progress toward them with Lucy.
-      </p>
+    <div className="h-full overflow-y-auto">
+      <ErrorBoundary>
+        <GoalsPageClient />
+      </ErrorBoundary>
     </div>
   );
 }

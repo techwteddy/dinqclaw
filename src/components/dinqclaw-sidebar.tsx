@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 import {
   CheckSquare,
   ExternalLink,
+  FolderOpen,
+  Lightbulb,
   MessageCircle,
   Plug,
   Settings,
@@ -29,7 +31,9 @@ import {
 const NAV_ITEMS = [
   { title: "Chat", url: "/dashboard", icon: MessageCircle, exact: true },
   { title: "Tasks", url: "/dashboard/tasks", icon: CheckSquare },
+  { title: "Ideas", url: "/dashboard/ideas", icon: Lightbulb },
   { title: "Goals", url: "/dashboard/goals", icon: Target },
+  { title: "Artifacts", url: "/dashboard/artifacts", icon: FolderOpen },
   { title: "Connect", url: "/dashboard/toolkits", icon: Plug },
   { title: "Settings", url: "/dashboard/settings", icon: Settings },
 ] as const;
