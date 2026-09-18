@@ -16,10 +16,10 @@ interface Tweet {
 
 const TWEETS: Tweet[] = [
   {
-    displayName: "Sarah",
-    handle: "@sarahfin",
+    displayName: "Sara",
+    handle: "@sarafromdc",
     avatar: "/images/testimonials/sarah.jpg",
-    body: "the fact that some of you are giving OpenClaw your passwords and API keys in a plaintext file in 2026 is actually crazy to me",
+    body: "finally an AI assistant that remembers I speak Amharic with my mom and English at work. Lucy just gets it. ረዳት for real.",
     replies: 14,
     retweets: 87,
     likes: 342,
@@ -30,7 +30,7 @@ const TWEETS: Tweet[] = [
     displayName: "Palash Kala",
     handle: "@kalapolish",
     avatar: "/images/testimonials/palash.jpg",
-    body: "A friend asked me to help him set up OpenClaw over the weekend. 2 hours of Docker, port forwarding, .env files. I said bro just try Redat. He messages me from Telegram 5 minutes later like \"wait that's it?\" Yes. That's it :)",
+    body: "Set up Redat in like 5 minutes. Connected Gmail and Calendar, then messaged Lucy on Telegram from the bus. She drafted my follow-ups before I got home.",
     replies: 7,
     retweets: 28,
     likes: 189,
@@ -41,7 +41,7 @@ const TWEETS: Tweet[] = [
     displayName: "Soham",
     handle: "@GanatraSoham",
     avatar: "/images/testimonials/soham.jpg",
-    body: "1800 exposed OpenClaw instances leaking API keys this week and people are still handing it their credentials in plaintext. absolute state of AI security in 2026",
+    body: "generic chatbots answer questions. Lucy books the meeting, finds the forgotten subscription, and briefs me every morning. different category entirely.",
     replies: 34,
     retweets: 93,
     likes: 412,
@@ -52,7 +52,7 @@ const TWEETS: Tweet[] = [
     displayName: "Karan Vaidya",
     handle: "@KaranVaidya6",
     avatar: "/images/testimonials/karan.jpg",
-    body: "Redat >>> OpenClaw for anyone who doesn't want to mass expose their credentials. OAuth only, sandboxed execution, works straight from Telegram. Genuinely don't know why anyone is still self-hosting an AI agent with root access in 2026",
+    body: "Redat = Muse vibes but with OAuth, Telegram, and an AI that actually knows diaspora life. Built by Dinq. Powered by Lucy. I'm in.",
     replies: 31,
     retweets: 156,
     likes: 847,
@@ -68,7 +68,6 @@ function TweetCard({ tweet, index }: { tweet: Tweet; index: number }) {
       delay={index * 0.1}
       margin="-60px"
     >
-      {/* Header row */}
       <div className="flex items-center gap-2.5">
         <Image
           src={tweet.avatar}
@@ -86,12 +85,10 @@ function TweetCard({ tweet, index }: { tweet: Tweet; index: number }) {
         </div>
       </div>
 
-      {/* Body */}
       <p className="text-foreground mt-3 text-sm leading-relaxed">
         {tweet.body}
       </p>
 
-      {/* Engagement row */}
       <div className="text-muted-foreground/60 mt-3 flex items-center gap-4 text-xs">
         <span className="flex items-center gap-1">
           <MessageCircle className="h-3.5 w-3.5" />
@@ -111,7 +108,6 @@ function TweetCard({ tweet, index }: { tweet: Tweet; index: number }) {
         </span>
       </div>
 
-      {/* Timestamp */}
       <div className="text-muted-foreground mt-2 text-xs">
         {tweet.timestamp}
       </div>
@@ -125,7 +121,7 @@ export function TestimonialsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center md:mb-16">
           <h2 className="text-foreground text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-            No seriously, stop giving OpenClaw your passwords.
+            Built from the motherland. Used everywhere.
           </h2>
         </div>
 

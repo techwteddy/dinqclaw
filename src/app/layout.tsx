@@ -19,8 +19,9 @@ const code = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Redat",
-  description: "Redat — Your AI personal assistant",
+  title: "Redat — Your AI Assistant",
+  description:
+    "Redat (ረዳት) means helper in Amharic. Meet Lucy, your personal AI that connects to your tools and gets things done.",
   icons: [
     { rel: "icon", url: "/favicon.svg", type: "image/svg+xml" },
     { rel: "icon", url: "/favicon.ico" },

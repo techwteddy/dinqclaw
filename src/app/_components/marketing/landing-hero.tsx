@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { ContainerScroll } from "~/components/ui/container-scroll-animation";
 import { ChatMockup } from "../chat-mockup";
@@ -13,32 +13,34 @@ export function LandingHero() {
         titleComponent={
           <div className="flex flex-col items-center gap-4 px-4 text-center">
             <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground md:text-5xl lg:text-6xl">
-              Your AI that does things while you sleep.{" "}
-              <span className="italic text-[#E8A045]">Securely.</span>
+              Your AI that gets things done.{" "}
+              <span className="text-[#E8A045]">ረዳት.</span>
             </h1>
             <p className="max-w-2xl text-base text-muted-foreground md:text-lg lg:text-xl">
-              Redat is a 24/7 AI assistant with 1000+ tools via{" "}
-              <strong className="text-foreground">OAuth</strong> and{" "}
-              <strong className="text-foreground">sandboxed execution</strong>.
-              Built on the ideas behind OpenClaw, rebuilt from scratch for
-              security.
+              Meet Lucy — your personal assistant powered by Redat. She connects
+              to your tools, remembers your world, and works on your behalf 24/7.
             </p>
-            <Link
-              href="/login"
-              className="inline-flex items-center gap-2 text-lg font-semibold text-foreground underline underline-offset-4 md:text-xl"
-            >
-              <Zap className="h-5 w-5 text-[#E8A045]" />
-              Deploy in seconds.
-            </Link>
-            <Link href="/login">
-              <Button
-                size="lg"
-                className="h-12 min-h-[44px] w-full bg-[#E8A045] px-8 text-base hover:bg-[#C8862E] sm:w-auto"
-              >
-                Get Started
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
+            <div className="mt-2 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+              <Link href="/login" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="h-12 min-h-[44px] w-full bg-[#E8A045] px-8 text-base text-[#010812] hover:bg-[#C8862E] sm:w-auto"
+                >
+                  Meet Lucy
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Link href="/login" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="h-12 min-h-[44px] w-full border-white/20 bg-transparent px-8 text-base text-foreground hover:bg-white/10 sm:w-auto"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Chat on Telegram
+                </Button>
+              </Link>
+            </div>
           </div>
         }
       >

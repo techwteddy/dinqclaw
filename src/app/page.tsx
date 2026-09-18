@@ -4,8 +4,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Redat",
+  alternateName: "ረዳት",
   description:
-    "Your 24/7 AI assistant with 1000+ integrations via OAuth and sandboxed execution.",
+    "Redat (ረዳት) means helper in Amharic. Meet Lucy, your personal AI that connects to your tools and gets things done.",
   applicationCategory: "Productivity",
   operatingSystem: "Web",
   offers: {

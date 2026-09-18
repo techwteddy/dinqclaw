@@ -13,8 +13,11 @@ export function LandingNav() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Link href="/login">
-            <Button size="sm" className="bg-[#E8A045] hover:bg-[#C8862E]">
-              Get Started
+            <Button
+              size="sm"
+              className="bg-[#E8A045] text-[#010812] hover:bg-[#C8862E]"
+            >
+              Meet Lucy
             </Button>
           </Link>
         </div>

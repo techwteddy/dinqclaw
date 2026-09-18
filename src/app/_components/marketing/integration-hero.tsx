@@ -41,11 +41,11 @@ export function IntegrationHero() {
           1000+ Integrations
         </span>
         <h2 className="text-foreground text-2xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-          Connect every tool you already use
+          Connected to everything
         </h2>
         <p className="text-muted-foreground mx-auto mt-4 max-w-2xl text-base md:text-lg">
-          Gmail, GitHub, Notion, Slack, and hundreds more — connected through
-          managed OAuth in a single click.
+          Gmail, GitHub, Notion, calendars, and 1,000+ more — connected through
+          secure OAuth so Lucy can take real actions on your behalf.
         </p>
       </div>
       <div className="relative z-10 mx-auto mt-12 max-w-6xl space-y-4">
@@ -55,9 +55,9 @@ export function IntegrationHero() {
       <div className="relative z-10 mt-10 flex justify-center">
         <Link
           href="/login"
-          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#E8A045] px-8 py-3 text-base font-semibold text-white transition-colors hover:bg-[#C8862E]"
+          className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-[#E8A045] px-8 py-3 text-base font-semibold text-[#010812] transition-colors hover:bg-[#C8862E]"
         >
-          Get Started
+          Meet Lucy
           <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
