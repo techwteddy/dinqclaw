@@ -15,7 +15,7 @@ export function ParallaxContentBody({
   title,
   children,
   ctaHref = "/login",
-  ctaLabel = "Get Started",
+  ctaLabel = "Meet Lucy",
 }: ParallaxContentBodyProps) {
   return (
     <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 px-4 pb-24 pt-12 md:grid-cols-12">
@@ -26,7 +26,7 @@ export function ParallaxContentBody({
       <div className="col-span-1 md:col-span-12">
         <Link
           href={ctaHref}
-          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-[#E8A045] px-9 py-4 text-base font-semibold text-white transition-colors hover:bg-[#C8862E] md:w-fit"
+          className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-2xl bg-[#E8A045] px-9 py-4 text-base font-semibold text-[#010812] transition-colors hover:bg-[#C8862E] md:w-fit"
         >
           {ctaLabel}
           <FiArrowUpRight className="h-5 w-5" />

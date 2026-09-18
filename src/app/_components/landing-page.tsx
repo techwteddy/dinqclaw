@@ -4,7 +4,6 @@ import { ParallaxSections } from "./marketing/parallax-sections";
 import { IntegrationHero } from "./marketing/integration-hero";
 import { ComparisonSection } from "./comparison-section";
 import { BottomCtaSection } from "./bottom-cta-section";
-import { DinqClawBrand } from "./dinqclaw-brand";
 
 export function LandingPage() {
   return (
@@ -17,9 +16,14 @@ export function LandingPage() {
         <ComparisonSection />
         <BottomCtaSection />
       </main>
-      <footer className="border-t border-white/10 px-4 py-6">
-        <div className="flex justify-center">
-          <DinqClawBrand size="sm" />
+      <footer className="border-t border-white/10 px-4 py-8">
+        <div className="mx-auto flex max-w-2xl flex-col items-center gap-2 text-center">
+          <p className="text-foreground text-sm font-medium">
+            Redat — ረዳት — helper in Amharic
+          </p>
+          <p className="text-muted-foreground text-xs">
+            Built by Dinq. Powered by Lucy.
+          </p>
         </div>
       </footer>
     </div>

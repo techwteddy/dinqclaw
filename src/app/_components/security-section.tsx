@@ -1,24 +1,24 @@
-import { AlertTriangle } from "lucide-react";
+import { Shield, Lock, Cloud } from "lucide-react";
 import { AnimateOnView } from "~/components/core/animate-on-view";
 
-const RISKS = [
+const PILLARS = [
   {
-    label: "UNTRUSTED SKILLS",
+    icon: Lock,
+    label: "OAUTH ONLY",
     description:
-      "5,700+ unvetted community skills on ClawHub. Malicious ones were found within weeks.",
-    answer: "Redat runs on Composio's managed tool surface instead.",
+      "Lucy connects to your apps through managed OAuth. No passwords stored or shared — revoke access in one click.",
   },
   {
-    label: "EXPOSED CREDENTIALS",
+    icon: Cloud,
+    label: "SANDBOXED ACTIONS",
     description:
-      "API keys stored in plaintext on your machine. 900+ instances found leaking tokens.",
-    answer: "Redat never gives the agent a raw key.",
+      "Every action runs in an isolated cloud environment. Nothing executes on your machine, and the sandbox is gone when the task is done.",
   },
   {
-    label: "UNSAFE CODE EXECUTION",
+    icon: Shield,
+    label: "BUILT FOR TRUST",
     description:
-      "Scripts run locally with your permissions. One prompt injection from an email can trigger destructive commands.",
-    answer: "Redat sandboxes all execution remotely.",
+      "Full action logs, encrypted credentials, and a managed tool surface — so you can let Lucy work without handing over the keys to your world.",
   },
 ] as const;
 
@@ -28,37 +28,32 @@ export function SecuritySection() {
       <div className="mx-auto max-w-4xl">
         <AnimateOnView className="mb-10 md:mb-16">
           <p className="text-muted-foreground mb-4 font-mono text-xs font-medium uppercase tracking-widest">
-            Why not vanilla OpenClaw?
+            Security by design
           </p>
           <h2 className="text-foreground text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl">
-            OpenClaw is powerful.
+            An assistant that acts —
             <br />
-            Its default setup is a security liability.
+            without compromising you.
           </h2>
         </AnimateOnView>
 
         <div className="divide-border divide-y">
-          {RISKS.map((risk, index) => (
+          {PILLARS.map((pillar, index) => (
             <AnimateOnView
-              key={risk.label}
+              key={pillar.label}
               className="flex flex-col gap-4 py-8 first:pt-0 last:pb-0 md:flex-row md:gap-12"
               delay={index * 0.1}
               margin="-50px"
             >
               <div className="flex shrink-0 items-center gap-3 md:w-64">
-                <AlertTriangle className="text-muted-foreground h-5 w-5 shrink-0" />
+                <pillar.icon className="text-[#E8A045] h-5 w-5 shrink-0" />
                 <span className="text-muted-foreground font-mono text-xs font-medium tracking-wider">
-                  {risk.label}
+                  {pillar.label}
                 </span>
               </div>
-              <div className="flex flex-col gap-3">
-                <p className="text-foreground leading-relaxed">
-                  {risk.description}
-                </p>
-                <p className="text-muted-foreground leading-relaxed">
-                  {risk.answer}
-                </p>
-              </div>
+              <p className="text-foreground leading-relaxed">
+                {pillar.description}
+              </p>
             </AnimateOnView>
           ))}
         </div>

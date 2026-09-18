@@ -1,59 +1,53 @@
-import { ArrowRight, CircleCheck, CircleX, AlertTriangle } from "lucide-react";
+import { ArrowRight, CircleCheck, CircleX } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import Link from "next/link";
 import { AnimateOnView } from "~/components/core/animate-on-view";
 
-type Indicator = "check" | "warn" | "x";
+type Indicator = "check" | "x";
 
 interface ComparisonRow {
   category: string;
-  dinqclaw: string;
-  vanilla: string;
-  vanillaIndicator: Indicator;
+  redat: string;
+  generic: string;
+  genericIndicator: Indicator;
 }
 
 const ROWS: ComparisonRow[] = [
   {
-    category: "Setup",
-    dinqclaw: "Seconds",
-    vanilla: "30-60 min (Node, Tailscale, tunnels)",
-    vanillaIndicator: "warn",
+    category: "Memory",
+    redat: "Remembers you across every chat",
+    generic: "Starts from scratch each session",
+    genericIndicator: "x",
   },
   {
-    category: "Credentials",
-    dinqclaw: "Encrypted, managed OAuth",
-    vanilla: "Plaintext in local config",
-    vanillaIndicator: "warn",
+    category: "Actions",
+    redat: "Takes real actions in your apps",
+    generic: "Mostly answers — doesn't do the work",
+    genericIndicator: "x",
   },
   {
-    category: "Code Execution",
-    dinqclaw: "Remote sandbox",
-    vanilla: "On your local machine",
-    vanillaIndicator: "warn",
+    category: "Telegram",
+    redat: "Works where you already chat",
+    generic: "Stuck in a browser tab",
+    genericIndicator: "x",
+  },
+  {
+    category: "Language",
+    redat: "Speaks Amharic and 13+ languages",
+    generic: "English-first, shallow localization",
+    genericIndicator: "x",
   },
   {
     category: "Integrations",
-    dinqclaw: "500+ with managed OAuth",
-    vanilla: "Manual API key setup per app",
-    vanillaIndicator: "warn",
+    redat: "1,000+ apps via secure OAuth",
+    generic: "Copy-paste and manual workarounds",
+    genericIndicator: "x",
   },
   {
-    category: "Skill Security",
-    dinqclaw: "Managed tool surface",
-    vanilla: "Unvetted public registry",
-    vanillaIndicator: "x",
-  },
-  {
-    category: "Audit Trails",
-    dinqclaw: "Full action log",
-    vanilla: "None",
-    vanillaIndicator: "x",
-  },
-  {
-    category: "Revocation",
-    dinqclaw: "One click",
-    vanilla: "Find and delete config files",
-    vanillaIndicator: "warn",
+    category: "Schedule",
+    redat: "Works while you sleep",
+    generic: "Only when you're online",
+    genericIndicator: "x",
   },
 ];
 
@@ -61,8 +55,6 @@ function IndicatorIcon({ type }: { type: Indicator }) {
   switch (type) {
     case "check":
       return <CircleCheck className="h-5 w-5 shrink-0 text-[#E8A045]" />;
-    case "warn":
-      return <AlertTriangle className="h-5 w-5 shrink-0 text-muted-foreground" />;
     case "x":
       return <CircleX className="h-5 w-5 shrink-0 text-destructive" />;
   }
@@ -74,9 +66,17 @@ export function ComparisonSection() {
       <div className="mx-auto max-w-4xl">
         <AnimateOnView
           as="h2"
-          className="text-foreground mb-10 text-center text-2xl font-bold tracking-tight md:mb-16 md:text-3xl lg:text-4xl"
+          className="text-foreground mb-3 text-center text-2xl font-bold tracking-tight md:text-3xl lg:text-4xl"
         >
-          Why is Redat better?
+          Redat vs generic AI assistants
+        </AnimateOnView>
+        <AnimateOnView
+          as="p"
+          className="text-muted-foreground mx-auto mb-10 max-w-2xl text-center text-base md:mb-16 md:text-lg"
+          delay={0.05}
+        >
+          Like Meta Muse — but built for the Ethiopian diaspora and anyone who
+          wants an AI that understands their world.
         </AnimateOnView>
 
         <AnimateOnView
@@ -85,44 +85,44 @@ export function ComparisonSection() {
           margin="-50px"
         >
           <div className="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-xl md:p-6">
-          <table className="w-full min-w-[500px] border-collapse">
-            <thead>
-              <tr className="border-border border-b">
-                <th className="py-4 pr-4 text-left" />
-                <th className="text-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
-                  Redat
-                </th>
-                <th className="text-muted-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
-                  Vanilla OpenClaw
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {ROWS.map((row) => (
-                <tr key={row.category} className="border-border border-b">
-                  <td className="text-foreground py-4 pr-4 text-sm font-medium md:text-base">
-                    {row.category}
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col items-center gap-1.5 text-center">
-                      <IndicatorIcon type="check" />
-                      <span className="text-muted-foreground text-xs md:text-sm">
-                        {row.dinqclaw}
-                      </span>
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="flex flex-col items-center gap-1.5 text-center">
-                      <IndicatorIcon type={row.vanillaIndicator} />
-                      <span className="text-muted-foreground text-xs md:text-sm">
-                        {row.vanilla}
-                      </span>
-                    </div>
-                  </td>
+            <table className="w-full min-w-[500px] border-collapse">
+              <thead>
+                <tr className="border-border border-b">
+                  <th className="py-4 pr-4 text-left" />
+                  <th className="text-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
+                    Redat
+                  </th>
+                  <th className="text-muted-foreground px-4 py-4 text-center text-sm font-semibold md:text-base">
+                    Generic AI
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {ROWS.map((row) => (
+                  <tr key={row.category} className="border-border border-b">
+                    <td className="text-foreground py-4 pr-4 text-sm font-medium md:text-base">
+                      {row.category}
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-center gap-1.5 text-center">
+                        <IndicatorIcon type="check" />
+                        <span className="text-muted-foreground text-xs md:text-sm">
+                          {row.redat}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-col items-center gap-1.5 text-center">
+                        <IndicatorIcon type={row.genericIndicator} />
+                        <span className="text-muted-foreground text-xs md:text-sm">
+                          {row.generic}
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </AnimateOnView>
 
@@ -133,9 +133,9 @@ export function ComparisonSection() {
           <Link href="/login">
             <Button
               size="lg"
-              className="h-12 w-full bg-[#E8A045] px-8 text-base hover:bg-[#C8862E] sm:w-auto"
+              className="h-12 w-full bg-[#E8A045] px-8 text-base text-[#010812] hover:bg-[#C8862E] sm:w-auto"
             >
-              Get Started
+              Meet Lucy
               <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
